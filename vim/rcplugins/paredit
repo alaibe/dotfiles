@@ -1,0 +1,5 @@
+" Paredit - Parenthesis
+
+Bundle 'vim-scripts/paredit.vim'
+
+" vim:ft=vim

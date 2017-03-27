@@ -1,0 +1,7 @@
+" Vim Tmux Runner
+
+Bundle 'christoomey/vim-tmux-runner'
+
+let g:VtrUseVtrMaps = 1
+
+" vim:ft=vim
