@@ -1,5 +1,12 @@
+# case-insensitive (all), partial-word and then substring completion
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' \
+    'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
 unsetopt auto_cd # with cdpath enabled, auto_cd gives too many false positives
-cdpath=($HOME/code)
+cdpath=(
+  $HOME/code \
+  $HOME
+)
 
 _cdpath_directories() {
   modified_in_last_days=${1:-999}
@@ -20,7 +27,22 @@ _is_a_git_repo() {
   done
 }
 
+tm-select-session() {
+  project=$(projects | fzf --reverse)
+  if [ ! -z "$project" ]; then
+    (cd "$project" && tat)
+  fi
+}
+
 projects() {
   _cdpath_directories $1 | _is_a_git_repo
+}
+
+itree() {
+  if [ -f .gitignore ]; then
+    tree -I "$(cat .gitignore | paste -s -d'|' -)" -C | less -R
+  else
+    tree -I node_modules -C
+  fi
 }
 

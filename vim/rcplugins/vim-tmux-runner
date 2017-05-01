@@ -3,5 +3,8 @@
 Bundle 'christoomey/vim-tmux-runner'
 
 let g:VtrUseVtrMaps = 1
+nnoremap <leader>va :VtrAttachToPane<cr>
+nnoremap <leader>fr :VtrFocusRunner<cr>
+noremap <C-f> :VtrSendLinesToRunner<cr>
 
 " vim:ft=vim

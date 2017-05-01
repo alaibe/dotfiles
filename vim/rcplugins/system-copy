@@ -1,0 +1,5 @@
+" System Copy - add `cp` operator to copy text to system clipboard via text
+
+Bundle "christoomey/vim-system-copy"
+
+" vim:ft=vim

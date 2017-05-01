@@ -4,6 +4,8 @@
 --exclude=node_modules
 --exclude=bower_components
 --exclude=vim/bundles
+--exclude=vendor
+--exclude=coverage
 --exclude=tmp
 --exclude=doc
 

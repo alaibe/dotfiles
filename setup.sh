@@ -1,10 +1,9 @@
 #!/bin/sh
-
-echo 'install oh-my-zsh'
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+echo 'install zplug'
+curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 
 echo 'install dependencies'
-sudo apt-get install build-essentials git tmux tig htop ack xsel docker mysql-server redis-client postgresql
+sudo apt-get install build-essentials git tmux tig htop ack xsel docker mysql-server redis-client postgresql imagemagick node vim tree ack
 
 echo 'create dirs'
 mkdir wiki
@@ -25,12 +24,13 @@ ln -s $HOME/code/dotfiles/tmux/tmux.conf .tmux.conf
 ln -s $HOME/code/dotfiles/vim .vim
 ln -s $HOME/code/dotfiles/vim/vimrc .vimrc
 ln -s $HOME/code/dotfiles/zsh/zshrc .zshrc
+ln -s $HOME/code/dotfiles/zsh/zshenv .zshenv
 ln -s $HOME/code/dotfiles/bin bin
 
-git clone git://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
 git clone https://github.com/gmarik/vundle.git .vim/bundles/vundle
 git clone https://github.com/rbenv/rbenv.git ~/.rbenv
 git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 sh .fzf/install
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash

@@ -1,0 +1,7 @@
+" Nerdtree
+
+Plugin 'scrooloose/nerdtree'
+
+map <C-b> :NERDTreeToggle<CR>
+
+" vim:ft=vim

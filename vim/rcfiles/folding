@@ -3,13 +3,12 @@
 
 "Enable indent folding
 set foldenable
-set foldmethod=syntax
-set foldlevel=1
+set foldmethod=indent
+set foldlevel=999
 
-" So I never use s, and I want a single key map to toggle folds, thus
-" lower s = toggle <=> upper S = toggle recursive
-nnoremap s za
-nnoremap S zA
+"Maps for folding, unfolding all
+nnoremap <LEADER>ff za
+nnoremap <LEADER>FF zA
 
 "Maps for folding, unfolding all
 nnoremap <LEADER>fu zM<CR>
@@ -17,6 +16,5 @@ nnoremap <LEADER>uf zR<CR>
 
 " Focus the current fold by closing all others
 nnoremap <LEADER>flf mzzM`zzv
-
 
 " vim:ft=vim

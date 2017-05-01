@@ -1,0 +1,11 @@
+" Vim Spec Runner - Smart spec (rspec) runner
+
+Bundle 'gabebw/vim-spec-runner'
+let g:spec_runner_dispatcher = 'call VtrSendCommand("{command}")'
+map <Leader>t <Plug>RunCurrentSpecFile
+map <Leader>u <Plug>RunFocusedSpec
+map <Leader>v <Plug>RunMostRecentSpec
+map <leader>aa :call VtrSendCommand("bundle exec rspec spec")<CR>
+map <leader>af :call VtrSendCommand("bundle exec rspec spec --only-failure")<CR>
+
+" vim:ft=vim

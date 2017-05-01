@@ -1,6 +1,0 @@
-" Clojure repl
-
-Bundle 'tpope/vim-salve'
-Bundle 'tpope/vim-fireplace'
-
-" vim:ft=vim

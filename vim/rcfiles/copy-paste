@@ -1,15 +1,15 @@
-" Copy & Paste
-"------------------------
+" " Copy & Paste
+" "------------------------
 
-set clipboard+=unamedplus
+" set clipboard+=clipboard
 
-" Copy to X CLIPBOARD
-map <leader>cc :w !xsel -i -b<CR>
-map <leader>cp :w !xsel -i -p<CR>
-map <leader>cs :w !xsel -i -s<CR>
-" Paste from X CLIPBOARD
-map <leader>pp :r!xsel -p<CR>
-map <leader>ps :r!xsel -s<CR>
-map <leader>pb :r!xsel -b<CR>
+" " Copy to X CLIPBOARD
+" map <leader>cc :w !xsel -i -b<CR>
+" map <leader>cp :w !xsel -i -p<CR>
+" map <leader>cs :w !xsel -i -s<CR>
+" " Paste from X CLIPBOARD
+" map <leader>pp :r!xsel -p<CR>
+" map <leader>ps :r!xsel -s<CR>
+" map <leader>pb :r!xsel -b<CR>
 
-" vim:ft=vim
+" " vim:ft=vim

@@ -1,7 +1,0 @@
-" JSX indent
-
-Bundle "mxw/vim-jsx.git"
-
-let g:jsx_ext_required = 0
-
-" vim:ft=vim

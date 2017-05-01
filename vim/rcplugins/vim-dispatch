@@ -1,5 +1,0 @@
-" Dispatch
-
-Bundle 'tpope/vim-dispatch'
-
-" vim:ft=vim
