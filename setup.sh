@@ -3,7 +3,7 @@ echo 'install zplug'
 curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 
 echo 'install dependencies'
-sudo apt-get install build-essentials git tmux tig htop ack xsel docker mysql-server redis-client postgresql imagemagick node vim tree ack
+sudo apt-get install build-essentials git tmux tig htop ack xsel docker imagemagick node vim tree ack docker-compose
 
 echo 'create dirs'
 mkdir wiki
