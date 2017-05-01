@@ -1,0 +1,5 @@
+" Fugitive - Vim meets git. Gstatus, Gdiff, etc.
+
+Bundle 'tpope/vim-fugitive'
+
+" vim:ft=vim
