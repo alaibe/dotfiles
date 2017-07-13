@@ -23,3 +23,14 @@ markdown=.markdown,.md,.mkd,.mdown
 
 --type-set
 cucumber=.feature
+
+--ignore-dir=node_modules
+--ignore-dir=.git
+--ignore-dir=bower_components
+--ignore-dir=public
+--ignore-dir=tmp
+--ignore-dir=log
+--ignore-file=ext:log
+--ignore-file=ext:pem
+--ignore-file=ext:lock
+--ignore-file=is:tags

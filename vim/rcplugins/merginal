@@ -1,0 +1,6 @@
+" Merginal
+
+Bundle 'idanarye/vim-merginal'
+nnoremap <C-b> :MerginalToggle<cr>
+
+" vim:ft=vim
