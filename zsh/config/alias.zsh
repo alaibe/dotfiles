@@ -1,5 +1,5 @@
-alias vim='vim -v'
-alias vi='vim -v'
+alias vim='nvim'
+alias vi='nvim'
 
 # ls, the common ones I use a lot shortened for rapid fire usage
 alias l='ls -lFh --color=auto'     #size,show type,human readable
