@@ -1,0 +1,5 @@
+" Git Gutter - Indicate changes
+
+Bundle 'airblade/vim-gitgutter'
+
+" vim:ft=vim

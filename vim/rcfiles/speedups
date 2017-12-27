@@ -71,9 +71,6 @@ imap jj <Esc>
 nnoremap Q :qa! <CR>
 nnoremap qq :q! <CR>
 
-" quick find
-nnoremap <leader>f :find 
-
 " copy
 nnoremap yy Y
 

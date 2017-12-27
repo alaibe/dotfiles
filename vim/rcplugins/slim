@@ -1,5 +1,0 @@
-" Slim - Syntax support for slim
-
-Bundle 'slim-template/vim-slim.git'
-
-" vim:ft=vim

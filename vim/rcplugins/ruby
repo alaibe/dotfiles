@@ -1,0 +1,5 @@
+" Vim Ruby
+
+Bundle 'vim-ruby/vim-ruby'
+
+" vim:ft=vim

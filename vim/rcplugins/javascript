@@ -2,6 +2,7 @@
 
 Bundle 'pangloss/vim-javascript'
 Bundle "mxw/vim-jsx.git"
+Bundle 'jelera/vim-javascript-syntax'
 
 let g:jsx_ext_required = 0
 

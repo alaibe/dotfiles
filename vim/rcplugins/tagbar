@@ -1,0 +1,7 @@
+" Tag Bar - Easy move
+
+Bundle 'majutsushi/tagbar'
+
+nmap <F8> :TagbarToggle<CR>
+
+" vim:ft=vim
