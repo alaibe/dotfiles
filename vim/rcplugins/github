@@ -1,0 +1,8 @@
+" Github
+
+Bundle 'open-browser.vim'
+Bundle 'tyru/open-browser-github.vim'
+
+nmap <Leader>go :OpenGithubFile<CR>
+nmap <Leader>pr :OpenGithubPullReq<CR>
+" vim:ft=vim
