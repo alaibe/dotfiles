@@ -1,0 +1,8 @@
+" Rubocop
+
+Bundle 'deepredsky/vim-rubocop'
+
+let g:rubocop_cmd = "bundle exec rubocop --display-cop-names"
+nmap <Leader>ru :RuboCop<CR>
+
+" vim:ft=vim

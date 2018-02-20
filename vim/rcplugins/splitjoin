@@ -1,0 +1,5 @@
+" Autosave - autosave file
+
+Bundle 'vim-scripts/splitjoin.vim'
+
+" vim:ft=vim
