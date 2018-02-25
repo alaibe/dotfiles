@@ -1,0 +1,7 @@
+" Ack - Integrata ack (grep replacement) into vim
+
+Bundle 'scrooloose/nerdtree'
+
+nmap <F7> :NERDTreeToggle<CR>
+
+" vim:ft=vim
