@@ -25,10 +25,9 @@ if zplug check b4b4r07/enhancd; then
   export ENHANCD_FILTER=fzf-tmux
 fi
 
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+. $HOME/.asdf/asdf.sh
+. $HOME/.asdf/completions/asdf.bash
 
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
