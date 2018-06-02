@@ -8,5 +8,8 @@ Bundle 'hail2u/vim-css3-syntax'
 Bundle 'lukaszb/vim-web-indent'
 Bundle 'othree/html5.vim'
 Bundle 'tpope/vim-haml'
+Bundle 'alvan/vim-closetag'
 
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.html.erb'
+let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
 " vim:ft=vim
