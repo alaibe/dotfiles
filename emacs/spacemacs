@@ -344,6 +344,12 @@ you should place your code here."
   (setq browse-url-browser-function 'browse-url-generic
         engine/browser-function 'browse-url-generic
         browse-url-generic-program "google-chrome")
+  (prodigy-define-service
+    :name "Rails Project"
+    :command "bundle"
+    :args '("exec" "rails" "server")
+    :cwd "~/code/api/"
+    :tags '(rails))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
