@@ -1,7 +1,7 @@
 #!/bin/sh
 
 echo 'install dependencies'
-sudo apt-get install curl zsh build-essentials git tmux tig htop ack-grep xsel docker imagemagick vim tree docker-compose emacs
+sudo apt-get install curl zsh build-essentials git tmux tig htop ack-grep xsel docker imagemagick vim tree docker-compose emacs zeal
 
 echo 'install zplug'
 curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
