@@ -38,3 +38,4 @@ git clone https://github.com/syl20bnr/spacemacs.git ~/.emacs.d
 asdf plugin-add ruby
 asdf plugin-add nodejs
 asdf plugin-add golang
+
