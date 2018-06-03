@@ -26,6 +26,7 @@ ln -s $HOME/code/dotfiles/vim .vim
 ln -s $HOME/code/dotfiles/vim/vimrc .vimrc
 ln -s $HOME/code/dotfiles/zsh/zshrc .zshrc
 ln -s $HOME/code/dotfiles/bin bin
+ln -s $HOME/code/dotfiles/emacs/spacemacs .spacemacs
 
 git clone https://github.com/gmarik/vundle.git .vim/bundles/vundle
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
