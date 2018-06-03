@@ -1,0 +1,6 @@
+" AutoFormat
+
+Bundle 'Chiel92/vim-autoformat'
+
+" vim:ft=vim
+
