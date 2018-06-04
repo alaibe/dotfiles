@@ -1,10 +1,7 @@
 #!/bin/sh
 
-echo 'install dependencies'
-sudo apt-get install curl zsh build-essentials git tmux tig htop ack-grep xsel docker imagemagick vim tree docker-compose emacs zeal
-
-echo 'install zplug'
-curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+rm .zshrc
 
 echo 'create dirs'
 mkdir wiki
@@ -30,7 +27,7 @@ ln -s $HOME/code/dotfiles/emacs/spacemacs .spacemacs
 
 git clone https://github.com/gmarik/vundle.git .vim/bundles/vundle
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-cd .zsh;sh install;cd -
+cd .fzf;sh install;cd -
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.5.0
 git clone https://github.com/syl20bnr/spacemacs.git ~/.emacs.d
