@@ -81,9 +81,6 @@ values."
      emoji
      xkcd
      dash
-     (elfeed :variables rmh-elfeed-org-files (list "~/.emacs.d/private/elfeed1.org")
-             elfeed-enable-web-interface t)
-
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
