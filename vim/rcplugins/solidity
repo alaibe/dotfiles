@@ -1,0 +1,5 @@
+" Solidity.vim - solidity lang support
+
+Bundle 'tomlion/vim-solidity'
+
+" vim:ft=vim
