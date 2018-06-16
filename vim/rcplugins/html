@@ -1,6 +1,6 @@
 " HTML - Syntax support for html
 
-Plug 'slim-template/vim-slim.git'
+Plug 'slim-template/vim-slim'
 Plug 'aaronjensen/vim-sass-status'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'groenewege/vim-less'
