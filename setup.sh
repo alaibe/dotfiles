@@ -25,13 +25,6 @@ ln -s $HOME/code/dotfiles/zsh/zshrc .zshrc
 ln -s $HOME/code/dotfiles/bin bin
 ln -s $HOME/code/dotfiles/emacs/spacemacs .spacemacs
 
-git clone https://github.com/gmarik/vundle.git .vim/bundles/vundle
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-cd .fzf;sh install;cd -
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.5.0
 git clone https://github.com/syl20bnr/spacemacs.git ~/.emacs.d
-
-asdf plugin-add ruby
-asdf plugin-add nodejs
-asdf plugin-add golang
