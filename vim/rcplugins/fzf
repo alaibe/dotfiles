@@ -5,7 +5,7 @@ Plug 'junegunn/fzf.vim'
 let g:fzf_files_options =
   \ '--reverse ' .
   \ '--preview "(coderay {} || cat {}) 2> /dev/null | head -'.&lines.'"'
-nnoremap <C-p> :Files<cr>
+nnoremap <C-p> :GFiles<cr>
 
 let branch_files_options = { 'source': 'branch_files' }
 let uncommited_files_options = { 'source': 'branch_files -w' }
