@@ -82,6 +82,7 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
+source ~/code/dotfiles/zsh/config/navigation.zsh
 
 # User configuration
 
