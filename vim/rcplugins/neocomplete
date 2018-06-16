@@ -1,7 +1,7 @@
 " Completion 
 
-Bundle '1995eaton/vim-better-javascript-completion'
-Bundle 'Shougo/neocomplete.vim'
+Plug '1995eaton/vim-better-javascript-completion'
+Plug 'Shougo/neocomplete.vim'
 
 " let g:neocomplete#sources#omni#functions.javascript = [
 " 			\   'jspc#omni',

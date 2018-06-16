@@ -1,6 +1,6 @@
 " Fugitive - Vim meets git. Gstatus, Gdiff, etc.
 
-Bundle 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 nnoremap <C-g> :Gstatus<cr>
 
 " vim:ft=vim

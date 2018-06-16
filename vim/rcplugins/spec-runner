@@ -1,6 +1,6 @@
 " Vim Spec Runner - Smart spec (rspec) runner
 
-Bundle 'gabebw/vim-spec-runner'
+Plug 'gabebw/vim-spec-runner'
 let g:spec_runner_dispatcher = 'call VtrSendCommand("{command}")'
 map <Leader>t <Plug>RunCurrentSpecFile
 map <Leader>u <Plug>RunFocusedSpec

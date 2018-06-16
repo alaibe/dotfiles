@@ -1,6 +1,6 @@
 " Vim Elixir
 
-Bundle 'elixir-editors/vim-elixir'
-Bundle 'slashmili/alchemist.vim'
+Plug 'elixir-editors/vim-elixir'
+Plug 'slashmili/alchemist.vim'
 
 " vim:ft=vim

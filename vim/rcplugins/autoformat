@@ -1,6 +1,6 @@
 " AutoFormat
 
-Bundle 'Chiel92/vim-autoformat'
+Plug 'Chiel92/vim-autoformat'
 
 " vim:ft=vim
 

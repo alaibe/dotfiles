@@ -1,7 +1,7 @@
 " Ctrlp
 
-Bundle 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Bundle 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 let g:fzf_files_options =
   \ '--reverse ' .
   \ '--preview "(coderay {} || cat {}) 2> /dev/null | head -'.&lines.'"'

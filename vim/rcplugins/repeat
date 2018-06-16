@@ -1,5 +1,5 @@
 " repeat
 
-Bundle "tpope/vim-repeat"
+Plug "tpope/vim-repeat"
 
 " vim:ft=vim

@@ -1,6 +1,6 @@
 " Syntastic
 
-Bundle 'vim-syntastic/syntastic'
+Plug 'vim-syntastic/syntastic'
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}

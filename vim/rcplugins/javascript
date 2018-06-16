@@ -1,17 +1,17 @@
 " JavaScript - JS syntax and indent settings, along with JSX support
 
-Bundle 'pangloss/vim-javascript'
-Bundle "mxw/vim-jsx.git"
-Bundle 'marijnh/tern_for_vim'
-Bundle 'elzr/vim-json'
-Bundle 'othree/jsdoc-syntax.vim'
-Bundle 'othree/yajs.vim'
-Bundle 'heavenshell/vim-jsdoc'
-Bundle 'othree/javascript-libraries-syntax.vim'
-Bundle 'othree/jspc.vim'
-Bundle 'moll/vim-node'
-Bundle 'ramitos/jsctags'
-Bundle 'vim-jsbeautify'
+Plug 'pangloss/vim-javascript'
+Plug "mxw/vim-jsx.git"
+Plug 'marijnh/tern_for_vim'
+Plug 'elzr/vim-json'
+Plug 'othree/jsdoc-syntax.vim'
+Plug 'othree/yajs.vim'
+Plug 'heavenshell/vim-jsdoc'
+Plug 'othree/javascript-libraries-syntax.vim'
+Plug 'othree/jspc.vim'
+Plug 'moll/vim-node'
+Plug 'ramitos/jsctags'
+Plug 'vim-jsbeautify'
 
 let g:tern_show_argument_hints='on_hold'
 let g:tern_map_keys=1
