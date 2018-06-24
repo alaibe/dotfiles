@@ -20,6 +20,9 @@ apm install linter-eslint
 apm install linter-rubocop
 apm install linter-ruby
 apm install linter-scss-lint
+apm install linter-solidity
+apm install autocomplete-solidity
+apm install language-solidity
 apm install pigments
 apm install platformio-ide-terminal
 apm install react
