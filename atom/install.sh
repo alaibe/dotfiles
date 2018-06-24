@@ -29,3 +29,4 @@ apm install react
 apm install rspec
 apm install script
 apm install teletype
+apm install atom-ide-debugger-node
