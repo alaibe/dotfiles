@@ -1,5 +1,0 @@
-" Mkdir - Mkdir for the current file before save
-
-Plug 'pbrisbin/vim-mkdir'
-
-" vim:ft=vim

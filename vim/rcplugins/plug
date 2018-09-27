@@ -1,5 +1,0 @@
-" Plug - Manages plugin & filetype bundles.
-
-nnoremap <leader>bi :PlugInstall<cr>
-
-" vim:ft=vim

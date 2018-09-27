@@ -1,8 +1,0 @@
-" Github
-
-Plug 'tyru/open-browser.vim'
-Plug 'tyru/open-browser-github.vim'
-
-nmap <Leader>go :OpenGithubFile<CR>
-nmap <Leader>pr :OpenGithubPullReq<CR>
-" vim:ft=vim

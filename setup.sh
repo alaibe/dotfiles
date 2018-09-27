@@ -27,4 +27,3 @@ ln -s $HOME/code/dotfiles/emacs/spacemacs .spacemacs
 
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.5.0
-git clone https://github.com/syl20bnr/spacemacs.git ~/.emacs.d

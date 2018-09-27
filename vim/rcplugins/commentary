@@ -1,5 +1,0 @@
-" Commentary - Motion aware commenting
-
-Plug 'tpope/vim-commentary'
-
-" vim:ft=vim

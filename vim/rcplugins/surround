@@ -1,8 +1,0 @@
-" Surround - Add, update, remove enclosing marks, ie [], {}. (), "", ''
-
-Plug 'tpope/vim-surround'
-
-nmap <leader>qd ysiw"
-nmap <leader>qs ysiw'
-
-" vim:ft=vim

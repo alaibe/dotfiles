@@ -1,27 +1,195 @@
-let mapleader = "\<Space>"
+set autoread                    " Load file from disk, ie for git reset
+set nocompatible		            " Not concerned with vi compatibility
+set lazyredraw                  " Don't update while executing macros
+set history=1000  		          " Remember last 1000 commands
+set scrolloff=4                 " Keep at least 4 lines below cursor
+set expandtab                   " Convert <tab> to spaces (2 or 4)
+set secure                      " Limit what modelines and autocmds can do
+set autowrite                   " write for me when I take any action
+set laststatus=2
+set noshowmode
+set nu
 
-function! s:SourceConfigFilesIn(directory)
-  let directory_splat = '~/.vim/' . a:directory . '/*'
-  for config_file in split(glob(directory_splat), '\n')
-    if filereadable(config_file)
-        execute 'source' config_file
-    endif
-  endfor
-endfunction
+let mapleader = ' '
 
-" Setup Vundle to manage my bundles
-"-----------------------------------
-filetype off " required!
+" Specify a directory for plugins
+" - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
 
-" Plugins are each listed in their own file. Loop and source ftw
-"----------------------------------------------------------------
-call s:SourceConfigFilesIn('rcplugins')
+" Make sure you use single quotes
 
-filetype plugin indent on " required!
-syntax on
+" You will load your plugin here
+Plug 'tomtom/tcomment_vim'
 
-" Vimrc is split accross multiple files, so loop over and source each
-"---------------------------------------------------------------------
-call s:SourceConfigFilesIn('rcfiles')
+" Leader C is the prefix for code related mappîngs 
+noremap <silent> <Leader>cc :TComment<CR>
+
+Plug 'ctrlpvim/ctrlp.vim'
+" Leader F is for file related mappîngs (open, browse...) 
+nnoremap <silent> <Leader>f :CtrlP<CR>
+nnoremap <silent> <Leader>fm :CtrlPMRU<CR>
+
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Ctrl B for buffer related mappings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <silent> <Leader>b :CtrlPBuffer<CR> " cycle between buffer
+nnoremap <silent> <Leader>bb :bn<CR> "create (N)ew buffer
+nnoremap <silent> <Leader>bd :bdelete<CR> "(D)elete the current buffer
+nnoremap <silent> <Leader>bu :bunload<CR> "(U)nload the current buffer
+nnoremap <silent> <Leader>bl :setnomodifiable<CR> " (L)ock the current buffer"
+
+Plug 'itchyny/lightline.vim'
+
+Plug 'sheerun/vim-polyglot'
+
+Plug 'editorconfig/editorconfig-vim'
+
+Plug 'w0rp/ale'
+
+let b:ale_linters = {'javascript': ['eslint']}
+
+let g:airline#extensions#ale#enabled = 1
+
+function! LinterStatus() abort
+    let l:counts = ale#statusline#Count(bufnr(''))
+
+    let l:all_errors = l:counts.error + l:counts.style_error
+    let l:all_non_errors = l:counts.total - l:all_errors
+
+    return l:counts.total == 0 ? 'OK' : printf(
+    \   '%dW %dE',
+    \   all_non_errors,
+    \   all_errors
+    \)
+endfunction
+
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '--'
+
+set statusline=%{LinterStatus()}
+
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+"
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
+" let g:syntastic_javascript_checkers = ['eslint']
+" let g:syntastic_javascript_eslint_exe = 'npm run lint --scripts-prepend-node-path=true --'
+
+Plug 'godlygeek/tabular'
+
+vnoremap <silent> <Leader>cee    :Tabularize /=<CR>
+vnoremap <silent> <Leader>cet    :Tabularize /#<CR>
+vnoremap <silent> <Leader>ce     :Tabularize /
+
+Plug 'vim-scripts/vim-auto-save'
+
+let g:auto_save = 1
+let g:auto_save_in_insert_mode = 0
+
+Plug 'christoomey/vim-tmux-navigator'
+
+Plug 'skwp/greplace.vim'
+
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+
+" Start autocompletion after 4 chars
+let g:ycm_min_num_of_chars_for_completion = 1
+let g:ycm_min_num_identifier_candidate_chars = 1
+let g:ycm_enable_diagnostic_highlighting = 0
+" Don't show YCM's preview window [ I find it really annoying ]
+set completeopt-=preview
+let g:ycm_add_preview_to_completeopt = 0
+
+let g:ycm_semantic_triggers =  {
+  \   'c' : ['->', '.'],
+  \   'objc' : ['->', '.', 're!\[[_a-zA-Z]+\w*\s', 're!^\s*[^\W\d]\w*\s',
+  \             're!\[.*\]\s'],
+  \   'ocaml' : ['.', '#'],
+  \   'cpp,cuda,objcpp' : ['->', '.', '::'],
+  \   'perl' : ['->'],
+  \   'php' : ['->', '::'],
+  \   'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go' : ['.'],
+  \   'ruby' : ['.', '::'],
+  \   'lua' : ['.', ':'],
+  \   'erlang' : [':'],
+  \ }
+
+" Initialize plugin system
 call plug#end()
+
+" absolute width of netrw window
+let g:netrw_winsize = -28
+
+" tree-view
+let g:netrw_liststyle = 3
+
+" sort is affecting only: directories on the top, files below
+let g:netrw_sort_sequence = '[\/]$,*'
+
+" open file in a new tab
+let g:netrw_browse_split = 3
+
+" reloads .vimrc -- making all changes active
+map <silent> <Leader>sop :source ~/.vimrc<CR>:PlugInstall<CR>:bdelete<CR>:exe ":echo 'vimrc reloaded'"<CR>
+
+" make backspaces deletejsensibly
+set backspace=indent,eol,start
+
+set listchars=tab:>.,trail:.,extends:#,nbsp:.
+
+set smartcase
+set ignorecase
+
+inoremap jj <ESC>
+
+map <CR> o<Esc>k
+
+cmap w!! %!sudo tee > /dev/null %
+
+" Quick toggle between two files
+nnoremap <leader><leader> <C-^>
+
+" Easy navigation for editing and cding
+nmap <Leader>ec :e ~/code/
+nmap <Leader>eh :e ~/
+nnoremap <leader>er :e <C-r>=escape(expand("%:p:h"), ' ')<cr>/
+
+"Make Y yank to end of line (like D, or C)
+nmap y y$
+
+" easy access to the start of the line
+nnoremap 0 ^
+
+" leader-; to enter command mode. No more holding shift!
+nnoremap <leader>; :
+vnoremap <leader>; :
+
+" Quickly open a second window to view files side by side
+nmap <LEADER>vn :split<CR>
+nmap <LEADER>vs :vsplit<CR>
+
+" Move one line at a time, aka 'fine ajdustment'
+nnoremap j gj
+nnoremap k gk
+
+" Go to position of last edit. Mnem: 'Go to Edit'
+nnoremap ge `.
+
+" Avoid Escape
+imap jj <Esc>
+
+" quick quit
+nnoremap Q :qa! <CR>
+nnoremap qq :q! <CR>
+
+" copy
+nnoremap yy Y
+
+" align
+nmap <Leader>fef ggVG=

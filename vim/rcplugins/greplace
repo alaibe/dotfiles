@@ -1,5 +1,0 @@
-" Greplace -  Global search and replace
-
-Plug 'skwp/greplace.vim'
-
-" vim:ft=vim
