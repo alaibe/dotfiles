@@ -193,3 +193,8 @@ nnoremap yy Y
 
 " align
 nmap <Leader>fef ggVG=
+
+" Clipboard 
+set clipboard=unnamed
+
+set noeb vb t_vb=
