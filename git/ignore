@@ -29,4 +29,4 @@ notes.md
 .ruby-version
 .vscode
 .tool-versions
-.tern-project
+jsconfig.json
