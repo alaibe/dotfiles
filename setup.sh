@@ -23,7 +23,6 @@ ln -s $HOME/code/dotfiles/vim .vim
 ln -s $HOME/code/dotfiles/vim/vimrc .vimrc
 ln -s $HOME/code/dotfiles/zsh/zshrc .zshrc
 ln -s $HOME/code/dotfiles/bin bin
-ln -s $HOME/code/dotfiles/emacs/spacemacs .spacemacs
 
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.5.0
