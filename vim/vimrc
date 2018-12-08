@@ -96,6 +96,10 @@ Plug 'christoomey/vim-tmux-navigator'
 
 Plug 'skwp/greplace.vim'
 
+set grepprg=ack
+
+let g:grep_cmd_opts = '--noheading'
+
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 
 " Start autocompletion after 4 chars
@@ -123,17 +127,17 @@ let g:ycm_semantic_triggers =  {
 " Initialize plugin system
 call plug#end()
 
-" absolute width of netrw window
-let g:netrw_winsize = -28
-
-" tree-view
-let g:netrw_liststyle = 3
-
-" sort is affecting only: directories on the top, files below
-let g:netrw_sort_sequence = '[\/]$,*'
-
-" open file in a new tab
-let g:netrw_browse_split = 3
+" " absolute width of netrw window
+" let g:netrw_winsize = -28
+"
+" " tree-view
+" let g:netrw_liststyle = 3
+"
+" " sort is affecting only: directories on the top, files below
+" let g:netrw_sort_sequence = '[\/]$,*'
+"
+" " open file in a new tab
+" let g:netrw_browse_split = 3
 
 " reloads .vimrc -- making all changes active
 map <silent> <Leader>sop :source ~/.vimrc<CR>:PlugInstall<CR>:bdelete<CR>:exe ":echo 'vimrc reloaded'"<CR>
@@ -193,6 +197,11 @@ nnoremap yy Y
 
 " align
 nmap <Leader>fef ggVG=
+
+" quick replace
+nnoremap <Leader>sub :%s///g<left><left>
+vnoremap <Leader>sub :s///g<left><left>
+nnoremap <leader>wub :%s//<C-r><C-w>/g<cr>
 
 " Clipboard 
 set clipboard=unnamed
