@@ -4,6 +4,3 @@ vim/bundle/**
 vim/bundle/**
 vim/plugged/**
 vim/Trashed-Bundles/**
-mutt/cache/**
-mutt/certificates
-mutt/aliases

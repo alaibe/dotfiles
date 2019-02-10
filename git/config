@@ -1,8 +1,8 @@
 [color]
   ui = true
 [alias]
-	glog = log -E -i --grep
-	sla = log --oneline --decorate --graph --all -20
+  glog = log -E -i --grep
+  sla = log --oneline --decorate --graph --all -20
   aa = add --all
   b = branch
   bhist = "!git --no-pager reflog $(git rev-parse --abbrev-ref HEAD)"
