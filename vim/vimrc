@@ -4,6 +4,8 @@ set lazyredraw                  " Don't update while executing macros
 set history=1000  		          " Remember last 1000 commands
 set scrolloff=4                 " Keep at least 4 lines below cursor
 set expandtab                   " Convert <tab> to spaces (2 or 4)
+set shiftwidth=2
+set softtabstop=2
 set secure                      " Limit what modelines and autocmds can do
 set autowrite                   " write for me when I take any action
 set laststatus=2
@@ -51,25 +53,25 @@ Plug 'editorconfig/editorconfig-vim'
 let g:ale_linters = {'javascript': ['tsserver'], 'typescript': ['tsserver']}
 
 let g:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'javascript': ['eslint'],
-\}
+      \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+      \   'javascript': ['eslint'],
+      \}
 
 let g:ale_fix_on_save = 1
 
 let g:airline#extensions#ale#enabled = 1
 
 function! LinterStatus() abort
-    let l:counts = ale#statusline#Count(bufnr(''))
+  let l:counts = ale#statusline#Count(bufnr(''))
 
-    let l:all_errors = l:counts.error + l:counts.style_error
-    let l:all_non_errors = l:counts.total - l:all_errors
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
 
-    return l:counts.total == 0 ? 'OK' : printf(
-    \   '%dW %dE',
-    \   all_non_errors,
-    \   all_errors
-    \)
+  return l:counts.total == 0 ? 'OK' : printf(
+        \   '%dW %dE',
+        \   all_non_errors,
+        \   all_errors
+        \)
 endfunction
 
 let g:ale_sign_error = '>>'
@@ -122,18 +124,18 @@ set completeopt-=preview
 let g:ycm_add_preview_to_completeopt = 0
 
 let g:ycm_semantic_triggers =  {
-  \   'c' : ['->', '.'],
-  \   'objc' : ['->', '.', 're!\[[_a-zA-Z]+\w*\s', 're!^\s*[^\W\d]\w*\s',
-  \             're!\[.*\]\s'],
-  \   'ocaml' : ['.', '#'],
-  \   'cpp,cuda,objcpp' : ['->', '.', '::'],
-  \   'perl' : ['->'],
-  \   'php' : ['->', '::'],
-  \   'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go' : ['.'],
-  \   'ruby' : ['.', '::'],
-  \   'lua' : ['.', ':'],
-  \   'erlang' : [':'],
-  \ }
+      \   'c' : ['->', '.'],
+      \   'objc' : ['->', '.', 're!\[[_a-zA-Z]+\w*\s', 're!^\s*[^\W\d]\w*\s',
+      \             're!\[.*\]\s'],
+      \   'ocaml' : ['.', '#'],
+      \   'cpp,cuda,objcpp' : ['->', '.', '::'],
+      \   'perl' : ['->'],
+      \   'php' : ['->', '::'],
+      \   'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go' : ['.'],
+      \   'ruby' : ['.', '::'],
+      \   'lua' : ['.', ':'],
+      \   'erlang' : [':'],
+      \ }
 
 " Initialize plugin system
 call plug#end()
