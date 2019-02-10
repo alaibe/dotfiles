@@ -21,11 +21,11 @@ call plug#begin('~/.vim/plugged')
 " You will load your plugin here
 Plug 'tomtom/tcomment_vim'
 
-" Leader C is the prefix for code related mappîngs 
+" Leader C is the prefix for code related mappîngs
 noremap <silent> <Leader>cc :TComment<CR>
 
 Plug 'ctrlpvim/ctrlp.vim'
-" Leader F is for file related mappîngs (open, browse...) 
+" Leader F is for file related mappîngs (open, browse...)
 nnoremap <silent> <Leader>f :CtrlP<CR>
 nnoremap <silent> <Leader>fm :CtrlPMRU<CR>
 
@@ -48,9 +48,14 @@ Plug 'sheerun/vim-polyglot'
 
 Plug 'editorconfig/editorconfig-vim'
 
-Plug 'w0rp/ale'
+let g:ale_linters = {'javascript': ['tsserver'], 'typescript': ['tsserver']}
 
-let b:ale_linters = {'javascript': ['eslint']}
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['eslint'],
+\}
+
+let g:ale_fix_on_save = 1
 
 let g:airline#extensions#ale#enabled = 1
 
@@ -69,6 +74,8 @@ endfunction
 
 let g:ale_sign_error = '>>'
 let g:ale_sign_warning = '--'
+
+Plug 'w0rp/ale'
 
 set statusline=%{LinterStatus()}
 
@@ -154,8 +161,6 @@ set listchars=tab:>.,trail:.,extends:#,nbsp:.
 set smartcase
 set ignorecase
 
-inoremap jj <ESC>
-
 map <CR> o<Esc>k
 
 cmap w!! %!sudo tee > /dev/null %
@@ -207,7 +212,7 @@ nnoremap <Leader>sub :%s///g<left><left>
 vnoremap <Leader>sub :s///g<left><left>
 nnoremap <leader>wub :%s//<C-r><C-w>/g<cr>
 
-" Clipboard 
+" Clipboard
 set clipboard=unnamed
 
 set noeb vb t_vb=
