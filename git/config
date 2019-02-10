@@ -53,8 +53,8 @@
 [core]
   editor = vim
   excludesfile = ~/code/dotfiles/git/ignore
-	pager = less -F -X
-	autocrlf = input
+  pager = less -F -X
+  autocrlf = input
 [user]
   name = Anthony Laibe
   email = anthony@laibe.cc
@@ -69,7 +69,7 @@
 [github]
   user = alaibe
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
