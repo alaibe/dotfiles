@@ -83,6 +83,8 @@ set statusline=%{LinterStatus()}
 " let g:syntastic_javascript_checkers = ['eslint']
 " let g:syntastic_javascript_eslint_exe = 'npm run lint --scripts-prepend-node-path=true --'
 
+Plug 'Quramy/tsuquyomi'
+
 Plug 'godlygeek/tabular'
 
 vnoremap <silent> <Leader>cee    :Tabularize /=<CR>
