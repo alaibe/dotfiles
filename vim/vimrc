@@ -26,7 +26,7 @@ Plug 'tomtom/tcomment_vim'
 " Leader C is the prefix for code related mappîngs
 noremap <silent> <Leader>cc :TComment<CR>
 
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'kien/ctrlp.vim'
 " Leader F is for file related mappîngs (open, browse...)
 nnoremap <silent> <Leader>f :CtrlP<CR>
 nnoremap <silent> <Leader>fm :CtrlPMRU<CR>
