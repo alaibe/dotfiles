@@ -38,11 +38,27 @@ let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Ctrl B for buffer related mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <silent> <Leader>b :CtrlPBuffer<CR> " cycle between buffer
+nnoremap <silent> <Leader>bp :CtrlPBuffer<CR> " cycle between buffer
 nnoremap <silent> <Leader>bb :bn<CR> "create (N)ew buffer
 nnoremap <silent> <Leader>bd :bdelete<CR> "(D)elete the current buffer
 nnoremap <silent> <Leader>bu :bunload<CR> "(U)nload the current buffer
 nnoremap <silent> <Leader>bl :setnomodifiable<CR> " (L)ock the current buffer"
+
+Plug 'scrooloose/nerdtree'
+
+nnoremap <Leader>zz :NERDTreeToggle<Enter>
+nnoremap <silent> <Leader>vf :NERDTreeFind<CR>
+
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+let NERDTreeQuitOnOpen = 1
+let NERDTreeAutoDeleteBuffer = 1
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
 Plug 'itchyny/lightline.vim'
 
