@@ -226,11 +226,15 @@ nnoremap yy Y
 nmap <Leader>fef ggVG=
 
 " quick replace
-nnoremap <Leader>sub :%s///g<left><left>
-vnoremap <Leader>sub :s///g<left><left>
+nnoremap <Leader>sub :%s///g<left><left><left>
+vnoremap <Leader>sub :s///g<left><left><left>
 nnoremap <leader>wub :%s//<C-r><C-w>/g<cr>
 
 " Clipboard
-set clipboard=unnamed
+if system('uname')=~'Darwin'
+  set clipboard=unnamed
+else
+  set clipboard=unnamedplus
+endif
 
 set noeb vb t_vb=
