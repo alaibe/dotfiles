@@ -1,9 +1,6 @@
 unsetopt auto_cd # with cdpath enabled, auto_cd gives too many false positives
 cdpath=(
-  $HOME/code \
-  $HOME/code/ethereum \
-  $HOME/code/embark-framework \
-  $HOME/code/SolonProject \
+  $HOME/local \
   $HOME
 )
 

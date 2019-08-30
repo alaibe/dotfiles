@@ -60,30 +60,18 @@ ZSH_THEME="robbyrussell"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
     asdf
-    branch
-    brew
     bundler
-    emacs
-    gem
     git
     github
     golang
-    heroku
-    iterm2
     node
     npm
-    npx
-    osx
-    rails
-    rake-fast
-    rake
-    ruby
     tig
     yarn
 )
 
 source $ZSH/oh-my-zsh.sh
-source ~/code/dotfiles/zsh/config/navigation.zsh
+source ~/dotfiles/zsh/config/navigation.zsh
 
 # User configuration
 
@@ -92,7 +80,7 @@ source ~/code/dotfiles/zsh/config/navigation.zsh
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-export EDITOR='vim'
+export EDITOR='nvim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -108,7 +96,13 @@ export EDITOR='vim'
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias vi='vim'
-alias embark='~/code/embark-framework/embark/bin/embark'
+alias vi='nvim'
+alias vim='nvim'
+
+export ANDROID_SDK=/home/anthony/Android/Sdk
+export PATH=$ANDROID_SDK/emulator:$PATH
+export PATH=$ANDROID_SDK/platform-tools:$PATH
+
+. $HOME/anaconda3/etc/profile.d/conda.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
