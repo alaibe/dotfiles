@@ -26,14 +26,10 @@ Plug 'tomtom/tcomment_vim'
 " Leader C is the prefix for code related mappîngs
 noremap <silent> <Leader>cc :TComment<CR>
 
-Plug 'kien/ctrlp.vim'
-" Leader F is for file related mappîngs (open, browse...)
-nnoremap <silent> <Leader>f :CtrlP<CR>
-nnoremap <silent> <Leader>fm :CtrlPMRU<CR>
-
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+nnoremap <C-p> :Files<CR>
+nnoremap <C-t> :History<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Ctrl B for buffer related mappings
@@ -43,14 +39,13 @@ nnoremap <silent> <Leader>bb :bn<CR> "create (N)ew buffer
 nnoremap <silent> <Leader>bd :bdelete<CR> "(D)elete the current buffer
 nnoremap <silent> <Leader>bu :bunload<CR> "(U)nload the current buffer
 nnoremap <silent> <Leader>bl :setnomodifiable<CR> " (L)ock the current buffer"
+nnoremap <silent> <C-b> :Buffers<CR>
 
 Plug 'itchyny/lightline.vim'
 
 Plug 'sheerun/vim-polyglot'
 
 Plug 'editorconfig/editorconfig-vim'
-
-Plug 'Quramy/tsuquyomi'
 
 Plug 'godlygeek/tabular'
 
@@ -71,6 +66,72 @@ set grepprg=ack
 
 let g:grep_cmd_opts = '--noheading'
 
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+
+if executable('pyls')
+    " pip install python-language-server
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': {server_info->['pyls']},
+        \ 'whitelist': ['python'],
+        \ })
+endif
+
+if executable('css-languageserver')
+    " npm install -g vscode-css-languageserver-bin
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'css-languageserver',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'css-languageserver --stdio']},
+        \ 'whitelist': ['css', 'less', 'sass'],
+        \ })
+endif
+
+if executable('docker-langserver')
+    " npm install -g dockerfile-language-server-nodejs
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'docker-langserver',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'docker-langserver --stdio']},
+        \ 'whitelist': ['dockerfile'],
+        \ })
+endif
+
+
+if executable('gopls')
+    " go get -u golang.org/x/tools/cmd/gopls
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'gopls',
+        \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
+        \ 'whitelist': ['go'],
+        \ })
+    autocmd BufWritePre *.go LspDocumentFormatSync
+endif
+
+if executable('typescript-language-server')
+      " npm install -g typescript typescript-language-server
+      au User lsp_setup call lsp#register_server({
+          \ 'name': 'javascript support using typescript-language-server',
+          \ 'cmd': { server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
+          \ 'root_uri': { server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_directory(lsp#utils#get_buffer_path(), '.git/..'))},
+          \ 'whitelist': ['javascript', 'javascript.jsx', 'typescript', 'typescript.tsx']
+          \ })
+endif
+
+if executable('solargraph')
+    " gem install solargraph
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'solargraph',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'solargraph stdio']},
+        \ 'initialization_options': {"diagnostics": "true"},
+        \ 'whitelist': ['ruby'],
+        \ })
+endif
+
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
 
 " Initialize plugin system
 call plug#end()
