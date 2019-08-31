@@ -100,7 +100,7 @@ export EDITOR='nvim'
 alias vi='nvim'
 alias vim='nvim'
 
-export ANDROID_SDK=/home/anthony/Android/Sdk
+export ANDROID_SDK=$HOME/Android/Sdk
 export PATH=$ANDROID_SDK/emulator:$PATH
 export PATH=$ANDROID_SDK/platform-tools:$PATH
 
