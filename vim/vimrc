@@ -71,6 +71,10 @@ Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
+nnoremap <silent> <C-]> :LspDefinition<CR>
+nnoremap <silent> T :LspHover<CR>
+nmap <Leader>fef :LspDocumentFormat<CR>
+
 if executable('pyls')
     " pip install python-language-server
     au User lsp_setup call lsp#register_server({
@@ -189,9 +193,6 @@ nnoremap qq :q! <CR>
 
 " copy
 nnoremap yy Y
-
-" align
-nmap <Leader>fef ggVG=
 
 " quick replace
 nnoremap <Leader>sub :%s///g<left><left><left>
