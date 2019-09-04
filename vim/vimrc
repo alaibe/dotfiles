@@ -73,6 +73,7 @@ Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
 nnoremap <silent> <C-]> :LspDefinition<CR>
 nnoremap <silent> T :LspHover<CR>
+nnoremap <c-y> :LspDocumentDiagnostics<Cr>
 nmap <Leader>fef :LspDocumentFormat<CR>
 
 if executable('pyls')
@@ -133,9 +134,15 @@ if executable('solargraph')
         \ })
 endif
 
+let g:lsp_async_completion = 1
+imap <c-space> <Plug>(asyncomplete_force_refresh)
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+
+Plug 'vim-scripts/taglist.vim'
+nnoremap tt :Tlist<CR>
 
 " Initialize plugin system
 call plug#end()
