@@ -52,7 +52,7 @@
   ureset = !git upstream && git reset --hard $(git upstream)
 [core]
   editor = vim
-  excludesfile = ~/code/dotfiles/git/ignore
+  excludesfile = ~/dotfiles/git/ignore
   pager = less -F -X
   autocrlf = input
 [user]
