@@ -1,10 +1,13 @@
 #!/bin/sh
 
+echo "install first: tmux git emacs neovim zsh ack"
+
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 rm .zshrc
 
+git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+
 echo 'create dirs'
-mkdir local
 mkdir .config/nvim
 
 echo 'install dotfiles'
@@ -24,5 +27,6 @@ ln -s $HOME/dotfiles/emacs/spacemacs .spacemacs
 
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.5.0
+
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
