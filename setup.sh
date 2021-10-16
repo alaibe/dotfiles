@@ -14,9 +14,6 @@ ln -s $HOME/dotfiles/git/config .gitconfig
 ln -s $HOME/dotfiles/git/ignore .gitignore
 ln -s $HOME/dotfiles/git/message .gitmessage
 ln -s $HOME/dotfiles/ruby/railsrc .railsrc
-ln -s $HOME/dotfiles/ruby/rspec .rspec
-ln -s $HOME/dotfiles/ruby/gemrc .gemrc
-ln -s $HOME/dotfiles/ruby/irbrc .irbrc
 ln -s $HOME/dotfiles/tmux/tmux.conf .tmux.conf
 ln -s $HOME/dotfiles/tmux/tmux-osx.conf .tmux-osx.conf
 ln -s $HOME/dotfiles/vim .vim
