@@ -47,24 +47,40 @@ This function should only modify configuration layer settings."
      markdown
      multiple-cursors
      org
-     (shell :variables
-            shell-default-height 30
-            shell-default-position 'bottom)
+     ;; (shell :variables
+     ;;        shell-default-height 30
+     ;;        shell-default-position 'bottom)
      spell-checking
      syntax-checking
      version-control
-     treemacs
-     typescript
+     (treemacs :variables
+               treemacs-use-git-mode 'deferred
+               treemacs-use-follow-mode t
+               treemacs-use-filewatch-mode t)
+     (go :variables
+         go-backend 'lsp
+         go-tab-width 4
+         go-format-before-save t
+         go-use-golangci-lint t)
+     major-modes
      nim
-     go
+     clojure
      csv
      json
+     yaml
+     react
      javascript
-     solidity
+     typescript
      rust
      protobuf
-     major-modes)
-
+     dash
+     github
+     cmake
+     tmux
+     xclipboard
+     sql
+     twitter
+     search-engine)
 
 
    ;; List of additional packages that will be installed without being wrapped
@@ -312,7 +328,7 @@ It should only modify the values of Spacemacs settings."
    ;; auto-save the file in-place, `cache' to auto-save the file to another
    ;; file stored in the cache directory and `nil' to disable auto-saving.
    ;; (default 'cache)
-   dotspacemacs-auto-save-file-location 'cache
+   dotspacemacs-auto-save-file-location 'original
 
    ;; Maximum number of rollback slots to keep in the cache. (default 5)
    dotspacemacs-max-rollback-slots 5
@@ -410,7 +426,7 @@ It should only modify the values of Spacemacs settings."
    ;;   :size-limit-kb 1000)
    ;; When used in a plist, `visual' takes precedence over `relative'.
    ;; (default nil)
-   dotspacemacs-line-numbers nil
+   dotspacemacs-line-numbers t
 
    ;; Code folding method. Possible values are `evil', `origami' and `vimish'.
    ;; (default 'evil)
@@ -552,7 +568,24 @@ dump.")
 This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
-before packages are loaded.")
+before packages are loaded."
+  (golden-ratio-mode 1)
+  (whitespace-mode 1)
+  (indent-guide-global-mode 1)
+
+  (setq projectile-enable-caching t)
+
+  (setq-default evil-escape-key-sequence "jk")
+
+  (setq-default truncate-lines t)
+  (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+  (setq auto-save-timeout 1)
+  (add-hook 'focus-out-hook 'do-auto-save)
+
+  (setq browse-url-browser-function 'browse-url-generic
+        engine/browser-function 'browse-url-generic
+        browse-url-generic-program "brave-browser"))
 
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -569,8 +602,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(evil-want-Y-yank-to-eol nil)
  '(package-selected-packages
-   (quote
-    (wolfram-mode vala-snippets vala-mode thrift stan-mode scad-mode qml-mode pkgbuild-mode matlab-mode logcat hoon-mode ebuild-mode dap-mode bui arduino-mode toml-mode solidity-flycheck solidity-mode ron-mode racer rust-mode protobuf-mode nim-mode flycheck-nimsuggest commenter epc ctable concurrent deferred godoctor go-tag go-rename go-impl go-guru go-gen-test go-fill-struct go-eldoc flycheck-rust flycheck-nim csv-mode company-go go-mode cargo yasnippet-snippets xterm-color web-beautify vterm unfill treemacs-magit tide typescript-mode terminal-here smeargle shell-pop prettier-js orgit-forge orgit org-rich-yank org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download org-contrib org org-cliplink npm-mode nodejs-repl mwim multi-term lsp-ui lsp-treemacs lsp-origami origami livid-mode skewer-mode simple-httpd json-navigator hierarchy json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc htmlize helm-org-rifle helm-lsp lsp-mode helm-gitignore helm-git-grep helm-company helm-c-yasnippet gnuplot gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ fringe-helper git-gutter+ fuzzy forge yaml markdown-mode magit ghub closql emacsql-sqlite emacsql treepy magit-section git-commit with-editor transient flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip evil-org eshell-z eshell-prompt-extras esh-help company browse-at-remote auto-yasnippet yasnippet auto-dictionary ac-ispell auto-complete ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package undo-tree treemacs-projectile treemacs-persp treemacs-icons-dired treemacs-evil toc-org symon symbol-overlay string-inflection string-edit spaceline-all-the-icons restart-emacs request rainbow-delimiters quickrun popwin pcre2el password-generator paradox overseer org-superstar open-junk-file nameless multi-line macrostep lorem-ipsum link-hint inspector info+ indent-guide hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org helm-mode-manager helm-make helm-ls-git helm-flx helm-descbinds helm-ag google-translate golden-ratio font-lock+ flycheck-package flycheck-elsa flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-easymotion evil-collection evil-cleverparens evil-args evil-anzu eval-sexp-fu emr elisp-slime-nav editorconfig dumb-jump drag-stuff dotenv-mode dired-quick-sort diminish define-word column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol auto-compile aggressive-indent ace-link ace-jump-helm-line))))
+   '(engine-mode twittering-mode spotify helm-spotify-plus multi sql-indent zeal-at-point toml-mode tide typescript-mode ron-mode rjsx-mode racer rust-mode protobuf-mode npm-mode nodejs-repl livid-mode skewer-mode simple-httpd js2-refactor multiple-cursors js2-mode js-doc helm-dash dash-docs helm-ctest grip-mode github-search github-clone gist gh marshal logito pcache flycheck-rust cmake-mode cargo unfill mwim yaml-mode web-beautify prettier-js json-navigator hierarchy json-mode json-snatcher json-reformat wolfram-mode vala-snippets vala-mode thrift stan-mode scad-mode qml-mode pkgbuild-mode nim-mode flycheck-nimsuggest commenter epc ctable concurrent deferred matlab-mode logcat hoon-mode flycheck-nim ebuild-mode arduino-mode yasnippet-snippets treemacs-magit smeargle orgit-forge orgit org-rich-yank org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download org-contrib org org-cliplink mmm-mode markdown-toc lsp-ui lsp-origami origami htmlize helm-org-rifle helm-lsp helm-gitignore helm-git-grep helm-company helm-c-yasnippet gnuplot gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe fringe-helper git-gutter gh-md fuzzy forge yaml magit ghub closql emacsql-sqlite emacsql treepy magit-section git-commit with-editor transient flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip evil-org browse-at-remote auto-yasnippet yasnippet auto-dictionary ac-ispell auto-complete helm-gtags godoctor go-tag go-rename go-impl go-guru go-gen-test go-fill-struct go-eldoc ggtags flycheck-golangci-lint dap-mode lsp-treemacs bui lsp-mode markdown-mode counsel-gtags counsel swiper ivy company-go go-mode company ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package undo-tree treemacs-projectile treemacs-persp treemacs-icons-dired treemacs-evil toc-org symon symbol-overlay string-inflection string-edit spaceline-all-the-icons restart-emacs request rainbow-delimiters quickrun popwin pcre2el password-generator paradox overseer org-superstar open-junk-file nameless multi-line macrostep lorem-ipsum link-hint inspector info+ indent-guide hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org helm-mode-manager helm-make helm-ls-git helm-flx helm-descbinds helm-ag google-translate golden-ratio font-lock+ flycheck-package flycheck-elsa flx-ido fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-easymotion evil-collection evil-cleverparens evil-args evil-anzu eval-sexp-fu emr elisp-slime-nav editorconfig dumb-jump drag-stuff dotenv-mode dired-quick-sort diminish define-word column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol auto-compile aggressive-indent ace-link ace-jump-helm-line)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

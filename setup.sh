@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo "install first: tmux git emacs neovim zsh ack"
+echo "install first: tmux git emacs neovim zsh ack direnv nvm golang nimble qt nix"
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 rm .zshrc
