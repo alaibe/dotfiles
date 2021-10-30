@@ -1,6 +1,6 @@
 unsetopt auto_cd # with cdpath enabled, auto_cd gives too many false positives
 cdpath=(
-  $HOME/local \
+  $HOME/code \
   $HOME
 )
 
