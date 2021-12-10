@@ -585,7 +585,7 @@ before packages are loaded."
 
   (setq browse-url-browser-function 'browse-url-generic
         engine/browser-function 'browse-url-generic
-        browse-url-generic-program "brave-browser"))
+        browse-url-generic-program "firefox"))
 
 
 ;; Do not write anything past this comment. This is where Emacs will
