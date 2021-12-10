@@ -72,7 +72,7 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
-source ~/dotfiles/zsh/config/navigation.zsh
+source ~/code/dotfiles/zsh/config/navigation.zsh
 
 # User configuration
 
@@ -105,6 +105,9 @@ export PATH=~/.nimble/bin:$PATH
 export PATH=~/Qt/5.14.2/gcc_64/bin:~/Qt/Tools/CMake/bin/:$PATH
 export QTDIR=~/Qt/5.14.2/gcc_64
 
+export PATH=$PATH:$(go env GOPATH)/bin
+export GOPATH=$(go env GOPATH)
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -113,4 +116,18 @@ if [ -e /home/anthony/.nix-profile/etc/profile.d/nix.sh ]; then . /home/anthony/
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-eval "$(direnv hook zsh)"
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+# __conda_setup="$('/home/anthony/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/home/anthony/anaconda3/etc/profile.d/conda.sh" ]; then
+#         . "/home/anthony/anaconda3/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/home/anthony/anaconda3/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
+# <<< conda initialize <<<
+

@@ -1,6 +1,10 @@
 #!/bin/sh
 
+<<<<<<< HEAD
 echo "install first: tmux git emacs neovim zsh ack nix"
+=======
+echo "install first: tmux git emacs neovim zsh ack direnv nvm golang nimble qt nix"
+>>>>>>> 7a698295eb58a58ba4efd4cf01446e35a863c432
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 rm .zshrc
@@ -24,9 +28,6 @@ ln -s $HOME/dotfiles/zsh/zshrc .zshrc
 ln -s $HOME/dotfiles/bin bin
 ln -s $HOME/dotfiles/nvim/init.vim .config/nvim/init.vim
 ln -s $HOME/dotfiles/emacs/spacemacs .spacemacs
-
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.5.0
 
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
