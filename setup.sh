@@ -1,29 +1,39 @@
 #!/bin/sh
 
-echo "install first: exuberant-ctags tree tmux git emacs neovim zsh ack direnv nvm golang nimble qt nix"
+sudo snap install bitwarden discord brave spotify notion-snap
+sudo snap install code --classic
+sudo apt install git
+git clone https://github.com/alaibe/dotfiles.git dotfiles
 
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-rm .zshrc
-
-git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+xargs -a ~/dotfiles/packages/general.txt sudo apt-get -y install
+xargs -a ~/dotfiles/packages/status.txt sudo apt-get -y install
 
 echo 'create dirs'
 mkdir .config/nvim
+mkdir code
+mkdir code/status-im
 
 echo 'install dotfiles'
-git clone https://github.com/alaibe/dotfiles.git dotfiles
-ln -s $HOME/dotfiles/ack/ackrc .ackrc
-ln -s $HOME/dotfiles/git/config .gitconfig
-ln -s $HOME/dotfiles/git/ignore .gitignore
-ln -s $HOME/dotfiles/git/message .gitmessage
-ln -s $HOME/dotfiles/tmux/tmux.conf .tmux.conf
-ln -s $HOME/dotfiles/tmux/tmux-osx.conf .tmux-osx.conf
-ln -s $HOME/dotfiles/vim .vim
-ln -s $HOME/dotfiles/vim/vimrc .vimrc
-ln -s $HOME/dotfiles/zsh/zshrc .zshrc
-ln -s $HOME/dotfiles/bin bin
-ln -s $HOME/dotfiles/nvim/init.vim .config/nvim/init.vim
-ln -s $HOME/dotfiles/emacs/spacemacs .spacemacs
+ln -sf $HOME/dotfiles/ack/ackrc .ackrc
+ln -sf $HOME/dotfiles/git/config .gitconfig
+ln -sf $HOME/dotfiles/git/ignore .gitignore
+ln -sf $HOME/dotfiles/git/message .gitmessage
+ln -sf $HOME/dotfiles/tmux/tmux.conf .tmux.conf
+ln -sf $HOME/dotfiles/vim .vim
+ln -sf $HOME/dotfiles/nvim/init.vim .config/nvim/init.vim
 
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install
+ln -sf $HOME/dotfiles/bin bin
+
+wget https://repo.anaconda.com/archive/Anaconda3-2022.05-Linux-x86_64.sh
+bash Anaconda3-2022.05-Linux-x86_64.sh
+rm Anaconda3-2022.05-Linux-x86_64.sh
+
+wget https://go.dev/dl/go1.18.5.linux-amd64.tar.gz
+sudo tar -C /opt/ -xzf go1.18.5.linux-amd64.tar.gz
+rm go1.18.5.linux-amd64.tar.gz
+
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+rm .zshrc
+ln -sf $HOME/dotfiles/zsh/zshrc .zshrc
+
+source ~/.zshrc

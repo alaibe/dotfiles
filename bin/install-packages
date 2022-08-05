@@ -1,0 +1,2 @@
+xargs -a ~/dotfiles/packages/general.txt sudo apt-get -y install
+xargs -a ~/dotfiles/packages/status.txt sudo apt-get -y install

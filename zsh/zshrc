@@ -63,8 +63,6 @@ plugins=(
     git
     github
     golang
-    node
-    npm
     tig
 )
 
@@ -97,21 +95,9 @@ alias ohmyzsh="nvim ~/.oh-my-zsh"
 alias vi='nvim'
 alias vim='nvim'
 
-export PATH=$PATH:/usr/local/go/bin:~/go/bin
-export PATH=~/.nimble/bin:$PATH
-export PATH=~/Qt/5.14.2/gcc_64/bin:~/Qt/Tools/CMake/bin/:$PATH
-export QTDIR=~/Qt/5.14.2/gcc_64
-
-export PATH=$PATH:$(go env GOPATH)/bin
-export GOPATH=$(go env GOPATH)
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-if [ -e /home/anthony/.nix-profile/etc/profile.d/nix.sh ]; then . /home/anthony/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export PATH=$PATH:/opt/go/bin:~/go/bin
+export PATH=/opt/qt/5.14.2/gcc_64/bin:$PATH
+export QTDIR=/opt/qt/5.14.2/gcc_64
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
