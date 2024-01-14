@@ -64,10 +64,12 @@ plugins=(
     github
     golang
     tig
+    asdf
 )
 
 source $ZSH/oh-my-zsh.sh
 source ~/dotfiles/zsh/config/navigation.zsh
+source ~/dotfiles/zsh/config/status.zsh
 
 # User configuration
 
@@ -95,10 +97,6 @@ alias ohmyzsh="nvim ~/.oh-my-zsh"
 alias vi='nvim'
 alias vim='nvim'
 
-export PATH=$PATH:/opt/go/bin:~/go/bin
-export PATH=/opt/qt/5.14.2/gcc_64/bin:$PATH
-export QTDIR=/opt/qt/5.14.2/gcc_64
-
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/home/anthony/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
@@ -113,4 +111,3 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-
