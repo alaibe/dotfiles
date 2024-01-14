@@ -204,7 +204,7 @@ nnoremap tt :Tlist<CR>
 call plug#end()
 
 " reloads .vimrc -- making all changes active
-map <silent> <Leader>sop :source ~/.vimrc<CR>:PlugInstall<CR>:bdelete<CR>:exe ":echo 'vimrc reloaded'"<CR>
+map <silent> <Leader>sop :source ~/.config/nvim/init.vim<CR>:PlugInstall<CR>:bdelete<CR>:exe ":echo 'vimrc reloaded'"<CR>
 
 " make backspaces deletejsensibly
 set backspace=indent,eol,start
