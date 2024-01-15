@@ -47,5 +47,7 @@ asdf install nodejs 18.18.2
 asdf install nim latest
 asdf global pnpm 8.7.6
 asdf global golang 1.20.10
-asdf global nim latest
+asdf global nim 2.0.2
 asdf global nodejs 18.18.2
+
+nimble install nimlsp
