@@ -20,6 +20,7 @@ ln -sf $HOME/dotfiles/git/message .gitmessage
 ln -sf $HOME/dotfiles/tmux/tmux.conf .tmux.conf
 ln -sf $HOME/dotfiles/vim .vim
 ln -sf $HOME/dotfiles/nvim/init.vim .config/nvim/init.vim
+ln -sf $HOME/dotfiles/nvim/coc-settings.json .config/nvim/coc-settings.json
 
 ln -sf $HOME/dotfiles/bin bin
 
@@ -42,12 +43,19 @@ asdf plugin-add php
 asdf plugin add golang https://github.com/asdf-community/asdf-golang.git
 asdf install pnpm 8.7.6
 asdf install php latest
-asdf install golang latest
+asdf install golang 1.20.10
 asdf install nodejs 18.18.2
-asdf install nim latest
+asdf install nim 2.0.2
 asdf global pnpm 8.7.6
+asdf global php latest
 asdf global golang 1.20.10
 asdf global nim 2.0.2
 asdf global nodejs 18.18.2
 
-nimble install nimlsp
+nimble install nimlangserver
+
+pnpm install -g vscode-json-languageserver
+
+go install golang.org/x/tools/gopls@latest
+
+

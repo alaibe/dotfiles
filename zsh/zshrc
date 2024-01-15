@@ -1,4 +1,4 @@
-# If you come from bash you might have to change your $PATH.
+#ete (N)ew bufferIf you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
@@ -111,3 +111,11 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
+# pnpm
+export PNPM_HOME="/home/anthony/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
