@@ -35,3 +35,4 @@ openssl
 pkg-config
 re2c
 zlib1g-dev
+rigrep
