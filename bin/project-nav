@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+
+# Smart project navigation script
+# Usage: project-nav [command]
+# Commands: list, cd, tmux, code
+
+PROJECTS_DIRS=(
+    "$HOME/code"
+    "$HOME/work" 
+    "$HOME/personal"
+    "$HOME/projects"
+)
+
+find_projects() {
+    for dir in "${PROJECTS_DIRS[@]}"; do
+        if [[ -d "$dir" ]]; then
+            find "$dir" -mindepth 1 -maxdepth 2 -type d -name ".git" -exec dirname {} \; 2>/dev/null
+        fi
+    done | sort -u
+}
+
+list_projects() {
+    find_projects | while read -r project; do
+        echo "$(basename "$project") -> $project"
+    done
+}
+
+select_project() {
+    find_projects | fzf --reverse --height=40% --prompt="Select project: " \
+        --preview='echo {} && echo && ls -la {} | head -10' \
+        --preview-window=right:50%
+}
+
+case "${1:-select}" in
+    "list"|"ls")
+        list_projects
+        ;;
+    "cd")
+        selected=$(select_project)
+        if [[ -n $selected ]]; then
+            echo "cd '$selected'"
+        fi
+        ;;
+    "tmux"|"t")
+        selected=$(select_project)
+        if [[ -n $selected ]]; then
+            tmux-sessionizer "$selected"
+        fi
+        ;;
+    "code"|"c")
+        selected=$(select_project)
+        if [[ -n $selected ]]; then
+            code "$selected"
+        fi
+        ;;
+    *)
+        selected=$(select_project)
+        if [[ -n $selected ]]; then
+            echo "Selected: $selected"
+            echo "Commands:"
+            echo "  cd '$selected'"
+            echo "  tmux-sessionizer '$selected'"
+            echo "  code '$selected'"
+        fi
+        ;;
+esac

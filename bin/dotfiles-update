@@ -1,0 +1,139 @@
+#!/usr/bin/env bash
+
+# Auto-update script for dotfiles and tools
+# Run this weekly to keep everything up to date
+
+set -e
+
+echo "🔄 Updating dotfiles and tools..."
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+log_info() {
+    echo -e "${BLUE}ℹ️  $1${NC}"
+}
+
+log_success() {
+    echo -e "${GREEN}✅ $1${NC}"
+}
+
+log_warning() {
+    echo -e "${YELLOW}⚠️  $1${NC}"
+}
+
+log_error() {
+    echo -e "${RED}❌ $1${NC}"
+}
+
+# Update Homebrew and packages
+log_info "Updating Homebrew..."
+if command -v brew &> /dev/null; then
+    brew update
+    brew upgrade
+    brew bundle install --file="$HOME/code/dotfiles/Brewfile" --no-lock
+    brew cleanup
+    log_success "Homebrew updated"
+else
+    log_error "Homebrew not found"
+fi
+
+# Update oh-my-zsh
+log_info "Updating oh-my-zsh..."
+if [[ -d "$HOME/.oh-my-zsh" ]]; then
+    cd "$HOME/.oh-my-zsh" && git pull
+    log_success "oh-my-zsh updated"
+else
+    log_warning "oh-my-zsh not found"
+fi
+
+# Update asdf plugins and versions
+log_info "Updating asdf plugins..."
+if command -v asdf &> /dev/null; then
+    asdf plugin update --all
+    log_success "asdf plugins updated"
+    
+    # Show outdated versions
+    log_info "Checking for outdated asdf packages..."
+    asdf current
+else
+    log_warning "asdf not found"
+fi
+
+# Update nvim plugins
+log_info "Updating nvim plugins..."
+if command -v nvim &> /dev/null; then
+    nvim --headless "+Lazy! sync" +qa
+    log_success "nvim plugins updated"
+else
+    log_warning "nvim not found"
+fi
+
+# Update tmux plugins (if using tpm)
+log_info "Updating tmux plugins..."
+if [[ -d "$HOME/.tmux/plugins/tpm" ]]; then
+    "$HOME/.tmux/plugins/tpm/bin/update_plugins" all
+    log_success "tmux plugins updated"
+else
+    log_info "tmux plugin manager not found, skipping"
+fi
+
+# Update macOS (prompt user)
+log_info "Checking for macOS updates..."
+if command -v softwareupdate &> /dev/null; then
+    available_updates=$(softwareupdate -l 2>&1 | grep -c "recommended" || echo "0")
+    if [[ $available_updates -gt 0 ]]; then
+        log_warning "macOS updates available. Run 'softwareupdate -ia' to install."
+    else
+        log_success "macOS is up to date"
+    fi
+fi
+
+# Clean up
+log_info "Cleaning up..."
+
+# Clean npm cache if node is installed
+if command -v npm &> /dev/null; then
+    npm cache clean --force
+    log_success "npm cache cleaned"
+fi
+
+# Clean Docker if installed
+if command -v docker &> /dev/null; then
+    docker system prune -f
+    log_success "Docker system cleaned"
+fi
+
+# Update git repositories in common locations
+log_info "Checking git repositories for updates..."
+for dir in "$HOME/code"/*/ "$HOME/work"/*/ "$HOME/personal"/*/; do
+    if [[ -d "$dir/.git" ]]; then
+        cd "$dir"
+        if git status --porcelain | grep -q .; then
+            log_warning "$(basename "$dir"): has uncommitted changes, skipping"
+        else
+            git fetch --quiet
+            behind=$(git rev-list HEAD..@{u} --count 2>/dev/null || echo "0")
+            if [[ $behind -gt 0 ]]; then
+                log_info "$(basename "$dir"): $behind commits behind, pulling..."
+                git pull --quiet
+                log_success "$(basename "$dir"): updated"
+            fi
+        fi
+    fi
+done
+
+log_success "🎉 Update complete! Consider restarting your terminal."
+echo ""
+echo "📊 Summary:"
+echo "  - Homebrew packages updated"
+echo "  - oh-my-zsh updated"  
+echo "  - asdf plugins updated"
+echo "  - nvim plugins updated"
+echo "  - Git repositories checked"
+echo ""
+echo "💡 Run 'source ~/.zshrc' to reload your shell configuration"

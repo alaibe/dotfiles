@@ -1,0 +1,37 @@
+# Custom JavaScript snippets
+
+snippet cl "Console log"
+console.log(${1:${VISUAL}});
+endsnippet
+
+snippet fn "Arrow function"
+const ${1:functionName} = (${2:params}) => {
+	${3:${VISUAL}}
+};
+endsnippet
+
+snippet afn "Async arrow function"
+const ${1:functionName} = async (${2:params}) => {
+	${3:${VISUAL}}
+};
+endsnippet
+
+snippet imp "Import"
+import ${1:module} from '${2:path}';
+endsnippet
+
+snippet req "Require"
+const ${1:module} = require('${2:path}');
+endsnippet
+
+snippet desc "Describe test block"
+describe('${1:description}', () => {
+	${2:${VISUAL}}
+});
+endsnippet
+
+snippet it "It test block"
+it('${1:should do something}', () => {
+	${2:${VISUAL}}
+});
+endsnippet

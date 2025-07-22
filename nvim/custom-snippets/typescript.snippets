@@ -1,0 +1,27 @@
+# Custom TypeScript snippets
+
+snippet int "Interface"
+interface ${1:InterfaceName} {
+	${2:${VISUAL}}
+}
+endsnippet
+
+snippet type "Type alias"
+type ${1:TypeName} = ${2:TypeDefinition};
+endsnippet
+
+snippet fn "Typed function"
+const ${1:functionName} = (${2:params}): ${3:ReturnType} => {
+	${4:${VISUAL}}
+};
+endsnippet
+
+snippet afn "Async typed function"
+const ${1:functionName} = async (${2:params}): Promise<${3:ReturnType}> => {
+	${4:${VISUAL}}
+};
+endsnippet
+
+snippet imp "Import with types"
+import { ${1:imports} } from '${2:path}';
+endsnippet

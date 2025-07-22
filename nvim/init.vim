@@ -65,6 +65,30 @@ nnoremap <leader>wub :%s//<C-r><C-w>/g<cr>
 " Clipboard for macOS
 set clipboard=unnamed
 
+" Telescope keybindings
+nnoremap <C-p> <cmd>Telescope find_files<cr>
+nnoremap <C-t> <cmd>Telescope oldfiles<cr>
+nnoremap <silent> <Leader>f <cmd>Telescope live_grep<cr>
+nnoremap <Leader>fb <cmd>Telescope buffers<cr>
+nnoremap <Leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <Leader>fc <cmd>Telescope commands<cr>
+
+" Git keybindings
+nnoremap <Leader>gs <cmd>Git<cr>
+nnoremap <Leader>gd <cmd>Gdiff<cr>
+nnoremap <Leader>gb <cmd>Git blame<cr>
+
+" File tree keybindings  
+nnoremap <Leader>e <cmd>NvimTreeToggle<cr>
+nnoremap <Leader>o <cmd>NvimTreeFocus<cr>
+
+" UltiSnips configuration
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "custom-snippets"]
+
 " Specify a directory for plugins
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
@@ -77,15 +101,15 @@ Plug 'tomtom/tcomment_vim'
 " Leader C is the prefix for code related mappîngs
 noremap <silent> <Leader>cc :TComment<CR>
 
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
-nnoremap <C-p> :GFiles<CR>
-nnoremap <C-t> :History<CR>
-nnoremap <silent> <Leader>f :Rg<CR>
+" Modern fuzzy finder - Telescope
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' }
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
 Plug 'itchyny/lightline.vim'
 
-Plug 'sheerun/vim-polyglot'
+" Treesitter for better syntax highlighting
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 Plug 'editorconfig/editorconfig-vim'
 
@@ -103,6 +127,17 @@ Plug 'christoomey/vim-tmux-navigator'
 
 Plug 'skwp/greplace.vim'
 
+" Which-key for keybinding help
+Plug 'folke/which-key.nvim'
+
+" Git integration
+Plug 'lewis6991/gitsigns.nvim'
+Plug 'tpope/vim-fugitive'
+
+" File tree
+Plug 'nvim-tree/nvim-tree.lua'
+Plug 'nvim-tree/nvim-web-devicons'
+
 " Neovim specific plugins
 Plug 'williamboman/mason.nvim', { 'branch': 'main' }
 Plug 'williamboman/mason-lspconfig.nvim', { 'branch': 'main' }
@@ -112,8 +147,11 @@ Plug 'hrsh7th/cmp-buffer', { 'branch': 'main' }
 Plug 'hrsh7th/cmp-path', { 'branch': 'main' }
 Plug 'hrsh7th/cmp-cmdline', { 'branch': 'main' }
 Plug 'hrsh7th/nvim-cmp', { 'branch': 'main' }
-Plug 'hrsh7th/cmp-vsnip', { 'branch': 'main' }
-Plug 'hrsh7th/vim-vsnip', { 'branch': 'main' }
+" Removed vsnip - using UltiSnips instead
+
+" Code snippets
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 " Initialize plugin system
 call plug#end()
@@ -127,12 +165,9 @@ lua << EOF
 
   cmp.setup({
     snippet = {
-      -- REQUIRED - you must specify a snippet engine
+      -- Using UltiSnips as snippet engine
       expand = function(args)
-        vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-        -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-        -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
-        -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+        vim.fn["UltiSnips#Anon"](args.body)
       end,
     },
     window = {
@@ -148,10 +183,7 @@ lua << EOF
     }),
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
-      { name = 'vsnip' }, -- For vsnip users.
-      -- { name = 'luasnip' }, -- For luasnip users.
-      -- { name = 'ultisnips' }, -- For ultisnips users.
-      -- { name = 'snippy' }, -- For snippy users.
+      { name = 'ultisnips' },
     }, {
       { name = 'buffer' },
     })
@@ -216,5 +248,99 @@ lua << EOF
   })
   lspconfig.nimls.setup({
     capabilities = lsp_capabilities,
+  })
+
+  -- Telescope setup
+  require('telescope').setup({
+    defaults = {
+      file_ignore_patterns = {"node_modules", ".git/"},
+      mappings = {
+        i = {
+          ["<C-u>"] = false,
+          ["<C-d>"] = false,
+        },
+      },
+    },
+    extensions = {
+      fzf = {
+        fuzzy = true,
+        override_generic_sorter = true,
+        override_file_sorter = true,
+        case_mode = "smart_case",
+      }
+    }
+  })
+  require('telescope').load_extension('fzf')
+
+  -- Treesitter setup
+  require('nvim-treesitter.configs').setup({
+    ensure_installed = { "lua", "vim", "javascript", "typescript", "go", "php", "python", "rust", "json", "yaml" },
+    sync_install = false,
+    auto_install = true,
+    highlight = {
+      enable = true,
+      additional_vim_regex_highlighting = false,
+    },
+    indent = {
+      enable = true
+    },
+  })
+
+  -- Which-key setup
+  require('which-key').setup({
+    plugins = {
+      marks = true,
+      registers = true,
+      spelling = {
+        enabled = true,
+        suggestions = 20,
+      },
+    },
+  })
+
+  -- Gitsigns setup
+  require('gitsigns').setup({
+    signs = {
+      add = { text = '+' },
+      change = { text = '~' },
+      delete = { text = '_' },
+      topdelete = { text = '‾' },
+      changedelete = { text = '~' },
+    },
+    current_line_blame = false,
+    current_line_blame_opts = {
+      virt_text = true,
+      virt_text_pos = 'eol',
+      delay = 1000,
+    },
+  })
+
+  -- Nvim-tree setup
+  require('nvim-tree').setup({
+    disable_netrw = true,
+    hijack_netrw = true,
+    view = {
+      width = 30,
+      side = 'left',
+    },
+    renderer = {
+      icons = {
+        show = {
+          file = true,
+          folder = true,
+          folder_arrow = true,
+          git = true,
+        },
+      },
+    },
+    filters = {
+      dotfiles = false,
+      custom = { '.DS_Store', '.git' },
+    },
+    git = {
+      enable = true,
+      ignore = false,
+      timeout = 500,
+    },
   })
 EOF

@@ -15,14 +15,8 @@ if [ ! -d "$HOME/code/dotfiles" ]; then
     git clone https://github.com/alaibe/dotfiles.git $HOME/code/dotfiles
 fi
 
-# Install packages via Homebrew
-xargs brew install < ~/code/dotfiles/packages/macos-brew.txt
-
-# Install cask apps
-xargs brew install --cask < ~/code/dotfiles/packages/macos-cask.txt
-
-# Install development tools
-brew install autoconf bison gettext openssl pkg-config
+# Install packages via Homebrew Bundle
+brew bundle install --file=~/code/dotfiles/Brewfile
 
 echo 'create dirs'
 mkdir -p ~/.config/nvim
@@ -51,21 +45,13 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 
 asdf plugin-add pnpm
 asdf plugin-add nodejs
-asdf plugin-add nim
-asdf plugin-add php
 asdf plugin add golang https://github.com/asdf-community/asdf-golang.git
-asdf install pnpm 8.7.6
-asdf install php latest
+asdf install pnpm latest
 asdf install golang 1.20.10
 asdf install nodejs 18.18.2
-asdf install nim 2.0.2
-asdf global pnpm 8.7.6
-asdf global php latest
+asdf global pnpm latest
 asdf global golang 1.20.10
-asdf global nim 2.0.2
 asdf global nodejs 18.18.2
-
-nimble install nimlangserver
 
 pnpm install -g vscode-json-languageserver
 

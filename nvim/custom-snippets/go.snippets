@@ -1,0 +1,33 @@
+# Custom Go snippets
+
+snippet main "Main function"
+func main() {
+	${1:${VISUAL}}
+}
+endsnippet
+
+snippet err "Error handling"
+if err != nil {
+	${1:return err}
+}
+endsnippet
+
+snippet iferr "If error return"
+if ${1:err} != nil {
+	return ${2:err}
+}
+endsnippet
+
+snippet test "Test function"
+func Test${1:Name}(t *testing.T) {
+	${2:${VISUAL}}
+}
+endsnippet
+
+snippet bench "Benchmark function"
+func Benchmark${1:Name}(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		${2:${VISUAL}}
+	}
+}
+endsnippet
