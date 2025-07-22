@@ -56,5 +56,3 @@ asdf global nodejs 18.18.2
 pnpm install -g vscode-json-languageserver
 
 go install golang.org/x/tools/gopls@latest
-
-

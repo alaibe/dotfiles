@@ -1,0 +1,73 @@
+# ClojureScript snippets for LuaSnip (SnipMate format)
+
+snippet shadow "shadow-cljs.edn config"
+	{:source-paths ["src" "test"]
+
+	 :dependencies
+	 [[reagent "${1:1.2.0}"]
+	  [re-frame "${2:1.3.0}"]]
+
+	 :dev-http {${3:8080} "${4:public}"}
+
+	 :builds
+	 {:${5:app}
+	  {:target :browser
+	   :output-dir "${6:public/js}"
+	   :asset-path "/${7:js}"
+	   :modules {:main {:init-fn ${8:my-app.core/init}}}
+	   :dev {:compiler-options {:closure-defines {re-frame.trace.trace-enabled? true}}}}}}
+	$0
+
+snippet reagent "Reagent component"
+	(defn ${1:component-name}
+	  [${2:props}]
+	  [:${3:div}
+	   ${0:content}])
+
+snippet re-frame-event "re-frame event handler"
+	(rf/reg-event-db
+	 ::${1:event-name}
+	 (fn [db [_ ${2:args}]]
+	   ${0:db}))
+
+snippet re-frame-sub "re-frame subscription"
+	(rf/reg-sub
+	 ::${1:subscription-name}
+	 (fn [db _]
+	   ${0:(get db :something)}))
+
+snippet re-frame-fx "re-frame effect handler"
+	(rf/reg-event-fx
+	 ::${1:event-name}
+	 (fn [{:keys [db]} [_ ${2:args}]]
+	   {:db ${3:db}
+	    ${0:;; other effects}}))
+
+snippet dispatch "re-frame dispatch"
+	(rf/dispatch [::${1:event-name} ${0:args}])
+
+snippet subscribe "re-frame subscribe"
+	@(rf/subscribe [::${1:subscription-name}${2: args}])
+
+snippet hiccup "Hiccup element"
+	[:${1:div}${2: {:class "${3:class-name}"}}
+	 ${0:content}]
+
+snippet form-2 "Reagent Form-2 component"
+	(defn ${1:component-name}
+	  [${2:props}]
+	  (let [${3:local-state} (r/atom ${4:initial-value})]
+	    (fn [${5:props}]
+	      [:${6:div}
+	       ${0:content}])))
+
+snippet js-interop "JavaScript interop"
+	(${1:.-${2:property}} ${3:js-object})
+
+snippet js-call "JavaScript method call"
+	(.${1:method} ${2:js-object} ${0:args})
+
+snippet cljs-test "ClojureScript test"
+	(deftest ${1:test-name}
+	  (testing "${2:test description}"
+	    (is (= ${3:expected} ${0:actual}))))

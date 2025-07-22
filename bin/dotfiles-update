@@ -56,7 +56,7 @@ log_info "Updating asdf plugins..."
 if command -v asdf &> /dev/null; then
     asdf plugin update --all
     log_success "asdf plugins updated"
-    
+
     # Show outdated versions
     log_info "Checking for outdated asdf packages..."
     asdf current
@@ -131,7 +131,7 @@ log_success "🎉 Update complete! Consider restarting your terminal."
 echo ""
 echo "📊 Summary:"
 echo "  - Homebrew packages updated"
-echo "  - oh-my-zsh updated"  
+echo "  - oh-my-zsh updated"
 echo "  - asdf plugins updated"
 echo "  - nvim plugins updated"
 echo "  - Git repositories checked"

@@ -1,0 +1,18 @@
+#!/bin/sh
+#
+# Commit message linting hook
+# Ensures commit messages follow conventional commit format
+#
+
+commit_regex='^(feat|fix|docs|style|refactor|test|chore)(\(.+\))?: .{1,50}'
+
+if ! grep -qE "$commit_regex" "$1"; then
+    echo "Invalid commit message format!"
+    echo "Expected format: type(scope): description"
+    echo "Types: feat, fix, docs, style, refactor, test, chore"
+    echo "Example: feat(auth): add login functionality"
+    echo ""
+    echo "Your commit message:"
+    cat "$1"
+    exit 1
+fi

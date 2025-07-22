@@ -53,8 +53,9 @@
 [core]
   editor = vim
   excludesfile = ~/code/dotfiles/git/ignore
-  pager = less -F -X
+  pager = delta
   autocrlf = input
+  hooksPath = ~/code/dotfiles/git/hooks-template
 [user]
   name = Anthony Laibe
   email = anthony@laibe.cc
@@ -66,5 +67,15 @@
   prune = true
 [commit]
   template = ~/.gitmessage
+[delta]
+  navigate = true
+  light = false
+  line-numbers = true
+  side-by-side = true
+  syntax-theme = Dracula
+
+[interactive]
+  diffFilter = delta --color-only
+
 [github]
   user = alaibe

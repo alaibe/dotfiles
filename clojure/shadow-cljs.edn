@@ -1,0 +1,30 @@
+;; Example shadow-cljs.edn template for ClojureScript projects
+{:source-paths ["src" "test"]
+
+ :dependencies
+ [[reagent "1.2.0"]
+  [re-frame "1.3.0"]
+  [day8.re-frame/re-frame-10x "1.9.9"]]
+
+ :dev-http {8080 "public"}
+
+ :builds
+ {:app
+  {:target :browser
+   :output-dir "public/js"
+   :asset-path "/js"
+   :modules {:main {:init-fn my-app.core/init
+                    :preloads [devtools.preload
+                               day8.re-frame-10x.preload]}}
+   :compiler-options {:infer-externs :auto}
+   :dev {:compiler-options {:closure-defines {re-frame.trace.trace-enabled? true
+                                              day8.re-frame.tracing.trace-enabled? true}}}}
+
+  :test
+  {:target :node-test
+   :output-to "target/test.js"
+   :autorun true}
+
+  :ci
+  {:target :karma
+   :output-to "target/ci.js"}}}

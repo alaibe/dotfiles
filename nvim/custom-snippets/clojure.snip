@@ -1,0 +1,100 @@
+# Clojure snippets for LuaSnip (SnipMate format)
+
+snippet ns "namespace declaration"
+	(ns ${1:namespace-name}
+	  ${2:(:require [${3:clojure.string :as str}])})
+
+	$0
+
+snippet defn "function definition"
+	(defn ${1:function-name}
+	  "${2:docstring}"
+	  [${3:args}]
+	  ${0:body})
+
+snippet defn- "private function definition"
+	(defn- ${1:function-name}
+	  "${2:docstring}"
+	  [${3:args}]
+	  ${0:body})
+
+snippet def "def binding"
+	(def ${1:var-name} ${0:value})
+
+snippet let "let binding"
+	(let [${1:bindings}]
+	  ${0:body})
+
+snippet if "if expression"
+	(if ${1:condition}
+	  ${2:then}
+	  ${0:else})
+
+snippet when "when expression"
+	(when ${1:condition}
+	  ${0:body})
+
+snippet cond "cond expression"
+	(cond
+	  ${1:condition} ${2:result}
+	  ${3::else} ${0:default})
+
+snippet doseq "doseq loop"
+	(doseq [${1:bindings}]
+	  ${0:body})
+
+snippet for "for comprehension"
+	(for [${1:bindings}]
+	  ${0:body})
+
+snippet map "map function"
+	(map ${1:function} ${0:collection})
+
+snippet filter "filter function"
+	(filter ${1:predicate} ${0:collection})
+
+snippet reduce "reduce function"
+	(reduce ${1:function} ${2:initial} ${0:collection})
+
+snippet try "try-catch block"
+	(try
+	  ${1:body}
+	  (catch ${2:Exception} ${3:e}
+	    ${0:error-handling}))
+
+snippet test "deftest"
+	(deftest ${1:test-name}
+	  (testing "${2:test description}"
+	    (is (= ${3:expected} ${0:actual}))))
+
+snippet is "test assertion"
+	(is (= ${1:expected} ${0:actual}))
+
+snippet spec "clojure.spec definition"
+	(s/def ::${1:spec-name} ${0:spec-definition})
+
+snippet fdef "function spec"
+	(s/fdef ${1:function-name}
+	  :args (s/cat ${2:args-spec})
+	  :ret ${3:return-spec})
+
+snippet comment "comment block"
+	(comment
+	  ${0:code}
+	)
+
+snippet pr "println debug"
+	(println "${1:debug}: " ${0:value})
+
+snippet ppr "pretty print debug"
+	(clojure.pprint/pprint ${0:value})
+
+snippet deps "deps.edn file"
+	{:deps {org.clojure/clojure {:mvn/version "${1:1.11.1}"}}
+	 :paths ["${2:src}"]
+	 :aliases
+	 {:dev {:extra-paths ["${3:dev}"]
+	        :extra-deps {${4:;; dev dependencies}}}
+	  :test {:extra-paths ["${5:test}"]
+	         :extra-deps {${6:;; test dependencies}}}}}
+	$0

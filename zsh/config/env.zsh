@@ -51,7 +51,7 @@ export LC_ALL=en_US.UTF-8
 # Development
 export NODE_ENV=development
 
-# Less configuration  
+# Less configuration
 export LESS='-R -F -X'
 export PAGER='less'
 
@@ -62,7 +62,7 @@ export GREP_COLOR='1;32'
 if [[ "$OSTYPE" == "darwin"* ]]; then
     # Add Homebrew to PATH for Apple Silicon
     eval "$(/opt/homebrew/bin/brew shellenv)"
-    
+
     # Use GNU tools if available
     export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
     export PATH="/opt/homebrew/opt/gnu-tar/libexec/gnubin:$PATH"

@@ -6,7 +6,7 @@
 
 PROJECTS_DIRS=(
     "$HOME/code"
-    "$HOME/work" 
+    "$HOME/work"
     "$HOME/personal"
     "$HOME/projects"
 )
