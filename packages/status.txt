@@ -1,4 +1,0 @@
-libssl-dev
-libpcsclite-dev
-cmake
-mesa-common-dev

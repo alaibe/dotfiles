@@ -1,0 +1,13 @@
+git
+tig
+htop
+tree
+nvim
+ack
+fzf
+tmux
+ctags
+wget
+curl
+ripgrep
+starship

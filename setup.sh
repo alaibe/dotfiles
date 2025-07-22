@@ -1,40 +1,53 @@
 #!/bin/sh
 
-sudo apt install git
-git clone https://github.com/alaibe/dotfiles.git dotfiles
+# Install Homebrew if not already installed
+if ! command -v brew &> /dev/null; then
+    echo "Installing Homebrew..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
 
-xargs -a ~/dotfiles/packages/general.txt sudo apt-get -y install
-xargs -a ~/dotfiles/packages/apps.txt sudo apt-get -y install
-xargs -a ~/dotfiles/packages/status.txt sudo apt-get -y install
+# Install git via Homebrew
+brew install git
+
+# Clone dotfiles if not already cloned
+if [ ! -d "$HOME/code/dotfiles" ]; then
+    mkdir -p ~/code
+    git clone https://github.com/alaibe/dotfiles.git $HOME/code/dotfiles
+fi
+
+# Install packages via Homebrew
+xargs brew install < ~/code/dotfiles/packages/macos-brew.txt
+
+# Install cask apps
+xargs brew install --cask < ~/code/dotfiles/packages/macos-cask.txt
+
+# Install development tools
+brew install autoconf bison gettext openssl pkg-config
 
 echo 'create dirs'
-mkdir .config/nvim
-mkdir code
-mkdir code/status-im
+mkdir -p ~/.config/nvim
 
 echo 'install dotfiles'
-ln -sf $HOME/dotfiles/ack/ackrc .ackrc
-ln -sf $HOME/dotfiles/git/config .gitconfig
-ln -sf $HOME/dotfiles/git/ignore .gitignore
-ln -sf $HOME/dotfiles/git/message .gitmessage
-ln -sf $HOME/dotfiles/tmux/tmux.conf .tmux.conf
-ln -sf $HOME/dotfiles/vim .vim
-ln -sf $HOME/dotfiles/nvim/init.vim .config/nvim/init.vim
-ln -sf $HOME/dotfiles/nvim/coc-settings.json .config/nvim/coc-settings.json
+ln -sf $HOME/code/dotfiles/ack/ackrc ~/.ackrc
+ln -sf $HOME/code/dotfiles/git/config ~/.gitconfig
+ln -sf $HOME/code/dotfiles/git/ignore ~/.gitignore
+ln -sf $HOME/code/dotfiles/git/message ~/.gitmessage
+ln -sf $HOME/code/dotfiles/tmux/tmux.conf ~/.tmux.conf
+ln -sf $HOME/code/dotfiles/nvim/init.vim ~/.config/nvim/init.vim
 
-ln -sf $HOME/dotfiles/bin bin
+ln -sf $HOME/code/dotfiles/bin ~/bin
 
-wget https://repo.anaconda.com/archive/Anaconda3-2022.05-Linux-x86_64.sh
-bash Anaconda3-2022.05-Linux-x86_64.sh
-rm Anaconda3-2022.05-Linux-x86_64.sh
+# Install asdf via Homebrew
+brew install asdf
 
-git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.13.1
-
+# Install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-rm .zshrc
-ln -sf $HOME/dotfiles/zsh/zshrc .zshrc
+rm ~/.zshrc
+ln -sf $HOME/code/dotfiles/zsh/zshrc ~/.zshrc
 
-source ~/.zshrc
+# Load asdf for this setup session (Homebrew version)
+eval "$(/opt/homebrew/bin/brew shellenv)"
+. $(brew --prefix asdf)/libexec/asdf.sh
 
 asdf plugin-add pnpm
 asdf plugin-add nodejs
