@@ -1,0 +1,148 @@
+# PHP snippets for LuaSnip
+
+snippet php "PHP opening tag"
+	<?php
+	$0
+
+snippet class "PHP class"
+	<?php
+
+	class ${1:ClassName}
+	{
+		public function __construct(${2:})
+		{
+			${0:// Constructor}
+		}
+	}
+
+snippet method "Public method"
+	public function ${1:methodName}(${2:})
+	{
+		${0:// Method body}
+	}
+
+snippet private "Private method"
+	private function ${1:methodName}(${2:})
+	{
+		${0:// Method body}
+	}
+
+snippet protected "Protected method"
+	protected function ${1:methodName}(${2:})
+	{
+		${0:// Method body}
+	}
+
+snippet function "Function"
+	function ${1:functionName}(${2:})
+	{
+		${0:// Function body}
+	}
+
+snippet if "If statement"
+	if (${1:condition}) {
+		${0:// Code}
+	}
+
+snippet foreach "Foreach loop"
+	foreach (${1:\$array} as ${2:\$key} => ${3:\$value}) {
+		${0:// Code}
+	}
+
+snippet for "For loop"
+	for (${1:\$i = 0}; ${2:\$i < count(\$array)}; ${3:\$i++}) {
+		${0:// Code}
+	}
+
+snippet while "While loop"
+	while (${1:condition}) {
+		${0:// Code}
+	}
+
+snippet try "Try-catch block"
+	try {
+		${1:// Code}
+	} catch (${2:Exception} \$e) {
+		${0:// Error handling}
+	}
+
+snippet array "Array"
+	[${0:// Array items}]
+
+snippet echo "Echo statement"
+	echo ${0:"Hello World"};
+
+snippet var_dump "Var dump debug"
+	var_dump(${0:\$variable});
+
+snippet dd "Die and dump (Laravel)"
+	dd(${0:\$variable});
+
+snippet route "Laravel route"
+	Route::${1:get}('${2:/path}', [${3:Controller}::class, '${4:method}']);
+
+snippet controller "Laravel controller"
+	<?php
+
+	namespace App\\Http\\Controllers;
+
+	use Illuminate\\Http\\Request;
+
+	class ${1:ControllerName} extends Controller
+	{
+		public function ${2:index}()
+		{
+			${0:// Method body}
+		}
+	}
+
+snippet migration "Laravel migration"
+	<?php
+
+	use Illuminate\\Database\\Migrations\\Migration;
+	use Illuminate\\Database\\Schema\\Blueprint;
+	use Illuminate\\Support\\Facades\\Schema;
+
+	return new class extends Migration
+	{
+		public function up()
+		{
+			Schema::create('${1:table_name}', function (Blueprint \$table) {
+				\$table->id();
+				${2:\$table->string('name');}
+				\$table->timestamps();
+			});
+		}
+
+		public function down()
+		{
+			Schema::dropIfExists('${3:table_name}');
+		}
+	};
+
+snippet model "Laravel Eloquent model"
+	<?php
+
+	namespace App\\Models;
+
+	use Illuminate\\Database\\Eloquent\\Model;
+
+	class ${1:ModelName} extends Model
+	{
+		protected \$fillable = [
+			${2:'name',}
+		];
+
+		${0:// Model methods}
+	}
+
+snippet test "PHPUnit test"
+	public function test${1:something}()
+	{
+		${2:// Arrange}
+
+		${3:// Act}
+
+		${4:// Assert}
+		\$this->assertEquals(${5:expected}, ${0:actual});
+	}

@@ -1,0 +1,156 @@
+# Ruby snippets for LuaSnip
+
+snippet class "Ruby class"
+	class ${1:ClassName}
+		def initialize(${2:})
+			${0:# Constructor}
+		end
+	end
+
+snippet def "Method definition"
+	def ${1:method_name}(${2:})
+		${0:# Method body}
+	end
+
+snippet defp "Private method"
+	private
+
+	def ${1:method_name}(${2:})
+		${0:# Method body}
+	end
+
+snippet if "If statement"
+	if ${1:condition}
+		${0:# Code}
+	end
+
+snippet unless "Unless statement"
+	unless ${1:condition}
+		${0:# Code}
+	end
+
+snippet case "Case statement"
+	case ${1:variable}
+	when ${2:value}
+		${3:# Code}
+	else
+		${0:# Default}
+	end
+
+snippet each "Each iteration"
+	${1:array}.each do |${2:item}|
+		${0:# Code}
+	end
+
+snippet map "Map iteration"
+	${1:array}.map do |${2:item}|
+		${0:item.transform}
+	end
+
+snippet select "Select iteration"
+	${1:array}.select do |${2:item}|
+		${0:item.condition?}
+	end
+
+snippet reject "Reject iteration"
+	${1:array}.reject do |${2:item}|
+		${0:item.condition?}
+	end
+
+snippet times "Times iteration"
+	${1:5}.times do |${2:i}|
+		${0:# Code}
+	end
+
+snippet begin "Begin-rescue block"
+	begin
+		${1:# Code}
+	rescue ${2:StandardError} => ${3:e}
+		${0:# Error handling}
+	end
+
+snippet module "Module definition"
+	module ${1:ModuleName}
+		${0:# Module content}
+	end
+
+snippet attr "Attr accessor"
+	attr_${1:accessor} :${0:attribute}
+
+snippet hash "Hash literal"
+	{
+		${1:key}: ${2:value},
+		${0:# More key-value pairs}
+	}
+
+snippet lambda "Lambda"
+	${1:lambda_name} = ->(${2:args}) { ${0:# Code} }
+
+snippet proc "Proc"
+	${1:proc_name} = proc { |${2:args}| ${0:# Code} }
+
+snippet puts "Puts debug"
+	puts "${1:Debug}: #{${0:variable}}"
+
+snippet p "P debug"
+	p ${0:variable}
+
+snippet pp "Pretty print debug"
+	pp ${0:variable}
+
+snippet rspec "RSpec describe block"
+	describe '${1:ClassName}' do
+		${2:subject { described_class.new }}
+
+		it '${3:should do something}' do
+			${0:# Test code}
+		end
+	end
+
+snippet it "RSpec it block"
+	it '${1:should do something}' do
+		${0:# Test code}
+	end
+
+snippet expect "RSpec expectation"
+	expect(${1:actual}).to eq(${0:expected})
+
+snippet let "RSpec let"
+	let(:${1:variable}) { ${0:value} }
+
+snippet before "RSpec before hook"
+	before do
+		${0:# Setup code}
+	end
+
+snippet context "RSpec context"
+	context '${1:when something}' do
+		${0:# Tests}
+	end
+
+snippet rails_model "Rails model"
+	class ${1:ModelName} < ApplicationRecord
+		${2:# Associations}
+		${3:# Validations}
+		${0:# Methods}
+	end
+
+snippet rails_controller "Rails controller"
+	class ${1:ControllerName} < ApplicationController
+		def ${2:index}
+			${0:# Action}
+		end
+	end
+
+snippet rails_migration "Rails migration"
+	class ${1:MigrationName} < ActiveRecord::Migration[7.0]
+		def change
+			${2:create_table :table_name do |t|}
+				${3:t.string :name}
+				${4:t.timestamps}
+			${5:end}
+		end
+	end
+
+snippet route "Rails route"
+	${1:get} '${2:/path}', to: '${3:controller#action}'

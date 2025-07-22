@@ -98,3 +98,95 @@ snippet deps "deps.edn file"
 	  :test {:extra-paths ["${5:test}"]
 	         :extra-deps {${6:;; test dependencies}}}}}
 	$0
+
+snippet thread "Thread-first macro"
+	(-> ${1:data}
+	    ${2:(function1)}
+	    ${0:(function2)})
+
+snippet thread-last "Thread-last macro"
+	(->> ${1:collection}
+	     ${2:(filter predicate)}
+	     ${0:(map transform)})
+
+snippet as-thread "Thread-as macro"
+	(as-> ${1:data} ${2:$}
+	  ${3:(function1 $)}
+	  ${0:(function2 $ other-arg)})
+
+snippet some-thread "Some-thread macro"
+	(some-> ${1:data}
+	        ${2:(function1)}
+	        ${0:(function2)})
+
+snippet destructure "Destructuring example"
+	(let [{:keys [${1:key1 key2}]} ${2:map}
+	      [${3:first second}] ${4:vector}]
+	  ${0:body})
+
+snippet letfn "letfn local functions"
+	(letfn [(${1:helper-fn} [${2:args}]
+	          ${3:body})]
+	  ${0:main-body})
+
+snippet lazy-seq "Lazy sequence"
+	(lazy-seq
+	  ${0:sequence-body})
+
+snippet gen-class "gen-class"
+	(:gen-class
+	 :name ${1:com.example.ClassName}
+	 :methods [[${2:methodName} [${3:String}] ${4:String}]])
+
+snippet protocol "Protocol definition"
+	(defprotocol ${1:ProtocolName}
+	  (${2:method-name} [${3:this args}] "${4:docstring}"))
+
+snippet reify "Reify implementation"
+	(reify ${1:Protocol}
+	  (${2:method-name} [${3:this args}]
+	    ${0:implementation}))
+
+snippet record "Record definition"
+	(defrecord ${1:RecordName} [${2:field1 field2}]
+	  ${3:Protocol}
+	  (${4:method-name} [${5:this args}]
+	    ${0:implementation}))
+
+snippet multimethod "Multimethod"
+	(defmulti ${1:multi-name} ${2:dispatch-fn})
+
+	(defmethod ${3:multi-name} ${4:dispatch-value}
+	  [${5:args}]
+	  ${0:implementation})
+
+snippet core-async "Core.async channel"
+	(let [${1:ch} (chan)]
+	  (go
+	    (>! ${2:ch} ${3:value}))
+	  (go
+	    (let [${4:result} (<! ${5:ch})]
+	      ${0:process-result})))
+
+snippet transducer "Transducer"
+	(def ${1:xf}
+	  (comp
+	    (filter ${2:predicate})
+	    (map ${3:transform})
+	    (take ${4:n})))
+
+	${0:(transduce xf conj [] coll)}
+
+snippet atom-swap "Atom swap"
+	(swap! ${1:atom} ${2:update-fn}${0: args})
+
+snippet atom-reset "Atom reset"
+	(reset! ${1:atom} ${0:new-value})
+
+snippet ref-dosync "Ref with dosync"
+	(dosync
+	  (ref-set ${1:ref} ${2:new-value})
+	  ${0:more-operations})
+
+snippet agent-send "Agent send"
+	(send ${1:agent} ${2:update-fn}${0: args})

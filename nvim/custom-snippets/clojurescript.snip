@@ -71,3 +71,78 @@ snippet cljs-test "ClojureScript test"
 	(deftest ${1:test-name}
 	  (testing "${2:test description}"
 	    (is (= ${3:expected} ${0:actual}))))
+
+snippet fulcro-component "Fulcro component"
+	(defsc ${1:ComponentName} [${2:this props}]
+	  {:query [:${3:db/id :item/name}]
+	   :ident :${4:db/id}}
+	  (${5:dom/div} {}
+	    ${0:"Content"}))
+
+snippet fulcro-mutation "Fulcro mutation"
+	(defmutation ${1:mutation-name} [{:keys [${2:params}]}]
+	  (action [{:keys [state]}]
+	    (swap! state ${3:update-fn}${0: params})))
+
+snippet re-frame-cofx "Re-frame co-effects"
+	(rf/reg-cofx
+	 ::${1:cofx-name}
+	 (fn [cofx]
+	   (assoc cofx ::${2:cofx-key} ${0:cofx-value})))
+
+snippet re-frame-interceptor "Re-frame interceptor"
+	(def ${1:interceptor-name}
+	  (rf/->interceptor
+	   :id ::${2:interceptor-id}
+	   :before (fn [context] ${3:before-logic})
+	   :after (fn [context] ${0:after-logic})))
+
+snippet reagent-atom "Reagent atom"
+	(def ${1:state} (r/atom ${0:initial-value}))
+
+snippet cljs-ajax "ClojureScript AJAX call"
+	(ajax/POST "${1:/api/endpoint}"
+	  {:params ${2:params}
+	   :handler #(${3:success-handler} %)
+	   :error-handler #(${0:error-handler} %))
+
+snippet core-async-cljs "Core.async in ClojureScript"
+	(go
+	  (let [${1:response} (<! (${2:async-operation}))]
+	    ${0:handle-response}))
+
+snippet component-did-mount "React componentDidMount"
+	:component-did-mount
+	(fn [${1:this}]
+	  ${0:mount-logic})
+
+snippet component-will-unmount "React componentWillUnmount"
+	:component-will-unmount
+	(fn [${1:this}]
+	  ${0:cleanup-logic})
+
+snippet use-effect "React useEffect hook"
+	(r/use-effect
+	  (fn []
+	    ${1:effect-logic}
+	    ${0:#(cleanup-logic)})
+	  [${2:dependencies}])
+
+snippet use-state "React useState hook"
+	(let [[${1:state} ${2:set-state}] (r/use-state ${0:initial-value})]
+	  ;; Use state and set-state)
+
+snippet rum-component "Rum component"
+	(rum/defcs ${1:component-name} < rum/reactive [${2:state props}]
+	  [:${3:div}
+	   ${0:content}])
+
+snippet om-component "Om component"
+	(defui ${1:ComponentName}
+	  static om/IQuery
+	  (query [${2:this}]
+	    [:${3:db/id :item/name}])
+	  Object
+	  (render [${4:this}]
+	    (${5:dom/div} nil
+	      ${0:"Content"})))

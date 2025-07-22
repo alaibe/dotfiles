@@ -1,0 +1,260 @@
+# Python snippets for LuaSnip
+
+snippet py "Python shebang"
+	#!/usr/bin/env python3
+
+	${0:# Script content}
+
+snippet import "Import statement"
+	import ${0:module}
+
+snippet from "From import"
+	from ${1:module} import ${0:function}
+
+snippet class "Class definition"
+	class ${1:ClassName}:
+		def __init__(self${2:, args}):
+			${0:pass}
+
+snippet def "Function definition"
+	def ${1:function_name}(${2:args}):
+		${0:pass}
+
+snippet defr "Function with return"
+	def ${1:function_name}(${2:args}) -> ${3:ReturnType}:
+		${0:return result}
+
+snippet async "Async function"
+	async def ${1:function_name}(${2:args}):
+		${0:await something}
+
+snippet if "If statement"
+	if ${1:condition}:
+		${0:pass}
+
+snippet elif "Elif statement"
+	elif ${1:condition}:
+		${0:pass}
+
+snippet else "Else statement"
+	else:
+		${0:pass}
+
+snippet for "For loop"
+	for ${1:item} in ${2:iterable}:
+		${0:pass}
+
+snippet while "While loop"
+	while ${1:condition}:
+		${0:pass}
+
+snippet try "Try-except block"
+	try:
+		${1:# Code}
+	except ${2:Exception} as ${3:e}:
+		${0:# Error handling}
+
+snippet tryf "Try-except-finally"
+	try:
+		${1:# Code}
+	except ${2:Exception} as ${3:e}:
+		${4:# Error handling}
+	finally:
+		${0:# Cleanup}
+
+snippet with "With statement"
+	with ${1:expression} as ${2:variable}:
+		${0:# Code}
+
+snippet lambda "Lambda function"
+	lambda ${1:args}: ${0:expression}
+
+snippet list "List comprehension"
+	[${1:expression} for ${2:item} in ${3:iterable}${4: if condition}]
+
+snippet dict "Dictionary comprehension"
+	{${1:key}: ${2:value} for ${3:item} in ${4:iterable}}
+
+snippet set "Set comprehension"
+	{${1:expression} for ${2:item} in ${3:iterable}}
+
+snippet gen "Generator expression"
+	(${1:expression} for ${2:item} in ${3:iterable})
+
+snippet ifmain "If main block"
+	if __name__ == "__main__":
+		${0:main()}
+
+snippet main "Main function template"
+	def main():
+		${1:pass}
+
+	if __name__ == "__main__":
+		main()
+
+snippet doc "Docstring"
+	"""${1:Brief description.}
+
+	${2:Detailed description.}
+
+	Args:
+		${3:arg1 (type): Description.}
+
+	Returns:
+		${4:type: Description.}
+
+	Raises:
+		${5:Exception: Description.}
+	"""
+	${0:pass}
+
+snippet print "Print debug"
+	print(f"${1:Debug}: {${0:variable}}")
+
+snippet pprint "Pretty print"
+	from pprint import pprint
+	pprint(${0:variable})
+
+snippet log "Logging setup"
+	import logging
+
+	logging.basicConfig(level=logging.${1:INFO})
+	logger = logging.getLogger(__name__)
+
+	${0:logger.info("Message")}
+
+snippet dataclass "Dataclass"
+	from dataclasses import dataclass
+
+	@dataclass
+	class ${1:ClassName}:
+		${2:field1}: ${3:str}
+		${0:field2}: ${4:int}
+
+snippet property "Property decorator"
+	@property
+	def ${1:property_name}(self):
+		${0:return self._property_name}
+
+snippet setter "Property setter"
+	@${1:property_name}.setter
+	def ${2:property_name}(self, value):
+		${0:self._property_name = value}
+
+snippet staticmethod "Static method"
+	@staticmethod
+	def ${1:method_name}(${2:args}):
+		${0:pass}
+
+snippet classmethod "Class method"
+	@classmethod
+	def ${1:method_name}(cls${2:, args}):
+		${0:pass}
+
+snippet test "Unit test method"
+	def test_${1:something}(self):
+		# Arrange
+		${2:# Setup}
+
+		# Act
+		${3:result = function()}
+
+		# Assert
+		${0:self.assertEqual(expected, result)}
+
+snippet testcase "Test case class"
+	import unittest
+
+	class Test${1:ClassName}(unittest.TestCase):
+		def setUp(self):
+			${2:pass}
+
+		def test_${3:something}(self):
+			${0:pass}
+
+snippet pytest "Pytest test function"
+	def test_${1:something}():
+		# Arrange
+		${2:# Setup}
+
+		# Act
+		${3:result = function()}
+
+		# Assert
+		${0:assert result == expected}
+
+snippet fixture "Pytest fixture"
+	import pytest
+
+	@pytest.fixture
+	def ${1:fixture_name}():
+		${0:return value}
+
+snippet flask "Flask app"
+	from flask import Flask
+
+	app = Flask(__name__)
+
+	@app.route('${1:/}')
+	def ${2:index}():
+		${0:return 'Hello World!'}
+
+	if __name__ == '__main__':
+		app.run(debug=True)
+
+snippet fastapi "FastAPI app"
+	from fastapi import FastAPI
+
+	app = FastAPI()
+
+	@app.get("${1:/}")
+	async def ${2:root}():
+		${0:return {"message": "Hello World"}}
+
+snippet django_model "Django model"
+	from django.db import models
+
+	class ${1:ModelName}(models.Model):
+		${2:name = models.CharField(max_length=100)}
+		${3:created_at = models.DateTimeField(auto_now_add=True)}
+
+		def __str__(self):
+			${0:return self.name}
+
+snippet django_view "Django view"
+	from django.shortcuts import render
+
+	def ${1:view_name}(request):
+		${2:context = {}}
+		${0:return render(request, 'template.html', context)}
+
+snippet numpy "NumPy import"
+	import numpy as np
+
+	${0:# NumPy code}
+
+snippet pandas "Pandas import"
+	import pandas as pd
+
+	${0:# Pandas code}
+
+snippet matplotlib "Matplotlib import"
+	import matplotlib.pyplot as plt
+
+	${0:# Plotting code}
+
+snippet requests "Requests HTTP call"
+	import requests
+
+	response = requests.${1:get}('${2:url}')
+	${3:response.raise_for_status()}
+	${0:data = response.json()}
+
+snippet argparse "Argument parser"
+	import argparse
+
+	parser = argparse.ArgumentParser(description='${1:Description}')
+	parser.add_argument('${2:argument}', help='${3:Help text}')
+	args = parser.parse_args()
+
+	${0:# Use args.argument}
