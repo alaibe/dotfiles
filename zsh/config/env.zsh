@@ -4,7 +4,8 @@
 export EDITOR='nvim'
 export VISUAL='nvim'
 
-# Path additions (removed since it's redundant with Homebrew shellenv)
+# Path additions
+export PATH="$HOME/bin:$PATH"
 
 # History settings
 export HISTSIZE=50000

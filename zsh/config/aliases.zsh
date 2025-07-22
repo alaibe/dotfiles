@@ -49,18 +49,18 @@ alias myip='curl ipinfo.io/ip'
 # tmux
 alias ta='tmux attach'
 alias tls='tmux list-sessions'
-alias tat='~/bin/tat'
-alias ts='tmux-sessionizer'
-alias tm='tmux-sessionizer'
+alias tat='~/bin/tmux-sessionizer'
+alias ts='~/bin/tmux-sessionizer'
+alias tm='~/bin/tmux-sessionizer'
 
 # Project navigation
-alias pn='project-nav'
-alias pc='project-nav cd'
-alias pt='project-nav tmux'  
-alias pcode='project-nav code'
+alias pn='~/bin/project-nav'
+alias pc='~/bin/project-nav cd'
+alias pt='~/bin/project-nav tmux'  
+alias pcode='~/bin/project-nav code'
 
 # System maintenance
-alias update='dotfiles-update'
+alias update='~/bin/dotfiles-update'
 alias brewup='brew update && brew upgrade && brew cleanup'
 
 # Better ls with exa (if installed)
